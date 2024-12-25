@@ -1,50 +1,110 @@
-# React + TypeScript + Vite
+# React Chat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Build Status](https://github.com/yourusername/react-chat/actions/workflows/main.yml/badge.svg)](https://github.com/yourusername/react-chat/actions)
+[![npm downloads](https://img.shields.io/npm/dm/react-chat.svg)](https://www.npmjs.com/package/react-chat)
+[![npm version](https://img.shields.io/npm/v/react-chat.svg)](https://www.npmjs.com/package/react-chat)
+[![License](https://img.shields.io/npm/l/react-chat.svg)](https://github.com/yourusername/react-chat/blob/main/LICENSE)
 
-Currently, two official plugins are available:
+A modern, customizable React chat component library that provides a complete chat interface with support for messages, sidebars, and custom styling.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requirements
 
-## Expanding the ESLint configuration
+- React 18.3.1 or higher
+- React DOM 18.3.1 or higher
+- Styled Components 6.1.13 or higher
+- React Markdown 9.0.1 or higher
+- React Syntax Highlighter 15.6.1 or higher
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-    languageOptions: {
-        // other options...
-        parserOptions: {
-            project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-            tsconfigRootDir: import.meta.dirname,
-        },
-    },
-});
+```bash
+npm install react-chat
+# or
+yarn add react-chat
+# or
+pnpm add react-chat
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Basic Usage
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
+### Step 1: Import the Components
+```tsx
+import { Chat, Messages, MessageInput, Sidebar } from 'react-chat';
+```
 
-export default tseslint.config({
-    // Set the react version
-    settings: { react: { version: "18.3" } },
-    plugins: {
-        // Add the react plugin
-        react,
-    },
-    rules: {
-        // other rules...
-        // Enable its recommended rules
-        ...react.configs.recommended.rules,
-        ...react.configs["jsx-runtime"].rules,
-    },
-});
+### Step 2: Attach the Messages Component
+```tsx
+const MyChat = () => (
+  <Chat>
+    <Messages />
+  </Chat>
+);
+```
+
+### Step 3: Attach the MessageInput Component
+```tsx
+const MyChat = () => (
+  <Chat>
+    <Messages />
+    <MessageInput />
+  </Chat>
+);
+```
+
+### Step 4: Attach the Sidebar Component
+```tsx
+const MyChat = () => (
+  <Chat>
+    <Sidebar />
+    <Messages />
+    <MessageInput />
+  </Chat>
+);
+```
+
+## Advanced Examples
+
+### Using Chat with Sidebar and Toggle
+```tsx
+const ChatWithToggle = () => (
+  <Chat>
+    <Sidebar withToggle={true} />
+    <Messages />
+    <MessageInput />
+  </Chat>
+);
+```
+
+### Using Chat with Sidebar (No Toggle)
+```tsx
+const ChatWithoutToggle = () => (
+  <Chat>
+    <Sidebar withToggle={false} />
+    <Messages />
+    <MessageInput />
+  </Chat>
+);
+```
+
+### Using Chat without Sidebar
+```tsx
+const BasicChat = () => (
+  <Chat>
+    <Messages />
+    <MessageInput />
+  </Chat>
+);
+```
+
+### Using Chat with Custom Icons
+```tsx
+const CustomIconChat = () => (
+  <Chat
+    assistantIcon={<img src="/custom-assistant-icon.png" alt="Assistant" />}
+  >
+    <Sidebar />
+    <Messages />
+    <MessageInput />
+  </Chat>
+);
 ```

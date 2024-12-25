@@ -1,6 +1,5 @@
 {
-    "name": "react-chat",
-    "private": true,
+    "name": "@funkyoz/react-chat",
     "version": "1.0.0",
     "type": "module",
     "main": "dist/main.js",

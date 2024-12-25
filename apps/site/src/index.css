@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.assistant-message > div:nth-child(2) {
+    @apply bg-gray-100 p-4 rounded-xl;
+}

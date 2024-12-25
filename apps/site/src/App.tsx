@@ -10,7 +10,7 @@ import {
     AssistantMessage,
     AssistantLoading,
     MarkdownContent,
-} from "../lib/main";
+} from "@funkyoz/react-chat";
 import {
     conversations,
     activeConversationIndex as defaultActiveIndex,
@@ -108,7 +108,7 @@ const ChatMessage = ({ message }: { message: Message }) => {
         return <UserMessage color="#000000">{message.content}</UserMessage>;
     }
     return (
-        <AssistantMessage>
+        <AssistantMessage className="assistant-message truncate">
             <MarkdownContent content={message.content} />
         </AssistantMessage>
     );

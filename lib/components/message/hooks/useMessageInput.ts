@@ -1,5 +1,4 @@
 import { useState, useRef, ChangeEvent, KeyboardEvent, useEffect } from "react";
-import { useChatProvider } from "../../../provider";
 
 type UseMessageInputReturn = {
     message: string;
@@ -12,18 +11,16 @@ type UseMessageInputReturn = {
 type UseMessageInputProps = {
     onSend?: (message: string) => void;
     value?: string;
+    withAutoFocus?: boolean;
 };
 
 export const useMessageInput = ({
     onSend,
     value = "",
+    withAutoFocus = false,
 }: UseMessageInputProps): UseMessageInputReturn => {
     const [message, setMessage] = useState(value);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
-    const {
-        state: { withAutoFocus },
-    } = useChatProvider();
-    const initialAutoFocus = useRef(withAutoFocus);
 
     useEffect(() => {
         setMessage(value);
@@ -31,7 +28,7 @@ export const useMessageInput = ({
 
     // Handle initial focus only
     useEffect(() => {
-        if (initialAutoFocus.current && textareaRef.current) {
+        if (withAutoFocus && textareaRef.current) {
             textareaRef.current.focus();
         }
     }, []);

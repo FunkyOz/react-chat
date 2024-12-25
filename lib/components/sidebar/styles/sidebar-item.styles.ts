@@ -11,6 +11,9 @@ export const SidebarItemContainer = styled.div.attrs(
 export const SidebarItemContent = styled.div.attrs(
     withDevClassName("sidebar-item-content")
 )<{ $isActive?: boolean }>`
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     border-radius: 0.5rem;
     padding: 0.5rem;
     cursor: pointer;

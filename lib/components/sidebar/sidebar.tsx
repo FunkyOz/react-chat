@@ -11,29 +11,47 @@ import {
 import { useSidebar } from "./hooks/useSidebar";
 import { MenuIcon } from "../icons";
 import { useChatProvider } from "../../provider";
+import useClassNames from "../../hooks/useClassNames";
 
 export const Sidebar = <T extends object>({
     items = [],
     children,
     title,
     withToggle = true,
-    toggleIcon,
+    toggleIcon = <MenuIcon />,
+    size: pixelSize,
+    className,
+    classNames,
 }: SidebarProps<T>) => {
-    const { renderItems, handleToggle } = useSidebar({ items, children });
+    const { renderItems, handleToggle, size } = useSidebar({
+        items,
+        children,
+        size: pixelSize,
+    });
     const {
         state: { isSidebarOpen },
     } = useChatProvider();
+    const classes = useClassNames({ className, classNames });
 
     return (
-        <SidebarWrapper $isOpen={isSidebarOpen}>
+        <SidebarWrapper className={classes.base} $isOpen={isSidebarOpen}>
             {withToggle && (
-                <ToggleButton onClick={handleToggle} $isOpen={isSidebarOpen}>
-                    {toggleIcon || <MenuIcon />}
+                <ToggleButton
+                    className={classes.toggleButton}
+                    onClick={handleToggle}
+                    $isOpen={isSidebarOpen}
+                >
+                    {toggleIcon}
                 </ToggleButton>
             )}
-            <SidebarContainer $isOpen={isSidebarOpen}>
-                <SidebarContent>
+            <SidebarContainer
+                className={classes.container}
+                $isOpen={isSidebarOpen}
+                $size={size}
+            >
+                <SidebarContent className={classes.content} $size={size}>
                     <SidebarHeader
+                        className={classes.header}
                         $withToggle={withToggle}
                         $isOpen={isSidebarOpen}
                     >

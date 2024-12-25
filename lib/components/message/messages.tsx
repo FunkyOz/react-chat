@@ -2,6 +2,7 @@ import React from "react";
 import { MessagesWrapper, BottomHelper } from "./styles/messages.styles";
 import { MessagesProps } from "../../types";
 import { useScrollToBottom } from "./hooks/useScrollToBottom";
+import useClassNames from "../../hooks/useClassNames";
 
 export const Messages = <T extends object>({
     items = [],
@@ -9,6 +10,7 @@ export const Messages = <T extends object>({
     loadingContent,
     isLoading = false,
     className,
+    classNames,
 }: MessagesProps<T>) => {
     const bottomRef = useScrollToBottom([children, isLoading]);
 
@@ -24,8 +26,10 @@ export const Messages = <T extends object>({
         return children;
     };
 
+    const classes = useClassNames({ className, classNames });
+
     return (
-        <MessagesWrapper className={className}>
+        <MessagesWrapper className={classes.base}>
             {renderItems()}
             {isLoading && loadingContent}
             <BottomHelper ref={bottomRef} />

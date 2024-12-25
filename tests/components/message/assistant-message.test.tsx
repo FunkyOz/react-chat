@@ -19,18 +19,9 @@ vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
     AssistantMessageContent: ({ children }: { children: React.ReactNode }) => (
         <div data-testid="assistant-message-content">{children}</div>
     ),
-    AssistantIconWrapper: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="assistant-icon-wrapper">{children}</div>
+    IconWrapper: ({ children }: { children: React.ReactNode }) => (
+        <div data-testid="icon-wrapper">{children}</div>
     ),
-}));
-
-// Mock the ChatProvider
-vi.mock("../../../lib/provider", () => ({
-    useChatProvider: () => ({
-        state: {
-            assistantIcon: <div data-testid="default-icon">AI</div>,
-        },
-    }),
 }));
 
 describe("AssistantMessage", () => {
@@ -56,8 +47,12 @@ describe("AssistantMessage", () => {
         expect(screen.getByTestId("end-content")).toBeInTheDocument();
     });
 
-    it("should render assistant icon from context", () => {
-        render(<AssistantMessage>Message</AssistantMessage>);
+    it("should render assistant icon", () => {
+        render(
+            <AssistantMessage icon={<div data-testid="default-icon">AI</div>}>
+                Message
+            </AssistantMessage>
+        );
 
         expect(screen.getByTestId("default-icon")).toBeInTheDocument();
     });
@@ -77,14 +72,12 @@ describe("AssistantMessage", () => {
     it("should render with proper structure", () => {
         render(<AssistantMessage>Message</AssistantMessage>);
 
-        expect(
-            screen.getByTestId("assistant-message-wrapper")
-        ).toBeInTheDocument();
-        expect(
-            screen.getByTestId("assistant-icon-wrapper")
-        ).toBeInTheDocument();
-        expect(
-            screen.getByTestId("assistant-message-content")
-        ).toBeInTheDocument();
+        const messageWrapper = screen.getByTestId("assistant-message-wrapper");
+        const iconWrapper = screen.getByTestId("icon-wrapper");
+        const content = screen.getByTestId("assistant-message-content");
+
+        expect(messageWrapper).toBeInTheDocument();
+        expect(iconWrapper).toBeInTheDocument();
+        expect(content).toBeInTheDocument();
     });
 });

@@ -28,7 +28,7 @@ export const CodeLanguage = styled.div`
     user-select: none;
 `;
 
-export const CodeCopyButton = styled.button<{ $isCopied?: boolean }>`
+export const CopyButton = styled.button<{ $isCopied?: boolean }>`
     background-color: transparent;
     color: #5d5d5d;
     border: none;

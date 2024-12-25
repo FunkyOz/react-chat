@@ -16,9 +16,7 @@ export const UserMessageWrapper = styled(BaseMessageWrapper).attrs(
     justify-content: flex-end;
 `;
 
-export const AssistantIconWrapper = styled.div.attrs(
-    withDevClassName("assistant-icon-wrapper")
-)`
+export const IconWrapper = styled.div.attrs(withDevClassName("icon-wrapper"))`
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 50%;
@@ -35,7 +33,7 @@ export const AssistantMessageWrapper = styled(BaseMessageWrapper).attrs(
 )`
     justify-content: flex-start;
 
-    ${AssistantIconWrapper} svg {
+    ${IconWrapper} svg {
         width: 1.75rem;
         height: 1.75rem;
         color: #666;

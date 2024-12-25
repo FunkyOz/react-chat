@@ -3,21 +3,23 @@ import {
     AssistantMessageWrapper,
     AssistantMessageContent,
     LoadingCircle,
-    AssistantIconWrapper,
+    IconWrapper,
 } from "./styles/messages.styles";
-import { useChatProvider } from "../../provider";
 import { AssistantLoadingProps } from "../../types";
+import { AssistantIcon } from "../icons";
+import useClassNames from "../../hooks/useClassNames";
 
 export const AssistantLoading: React.FC<AssistantLoadingProps> = ({
     className,
+    icon = <AssistantIcon />,
+    classNames,
 }) => {
-    const {
-        state: { assistantIcon },
-    } = useChatProvider();
+    const classes = useClassNames({ className, classNames });
+
     return (
-        <AssistantMessageWrapper className={className}>
-            <AssistantIconWrapper>{assistantIcon}</AssistantIconWrapper>
-            <AssistantMessageContent>
+        <AssistantMessageWrapper className={classes.base}>
+            <IconWrapper className={classes.iconWrapper}>{icon}</IconWrapper>
+            <AssistantMessageContent className={classes.content}>
                 <LoadingCircle />
             </AssistantMessageContent>
         </AssistantMessageWrapper>

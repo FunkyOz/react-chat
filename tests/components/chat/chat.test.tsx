@@ -38,14 +38,20 @@ vi.mock("../../../lib/components/message/messages", () => ({
 }));
 
 vi.mock("../../../lib/components/chat/styles/chat.styles", () => ({
-    ChatWrapper: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="chat-wrapper">{children}</div>
+    ChatWrapper: ({ children, ...rest }: { children: React.ReactNode }) => (
+        <div data-testid="chat-wrapper" {...rest}>
+            {children}
+        </div>
     ),
-    ChatContent: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="chat-content">{children}</div>
+    ChatContent: ({ children, ...rest }: { children: React.ReactNode }) => (
+        <div data-testid="chat-content" {...rest}>
+            {children}
+        </div>
     ),
-    ChatContainer: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="chat-container">{children}</div>
+    ChatContainer: ({ children, ...rest }: { children: React.ReactNode }) => (
+        <div data-testid="chat-container" {...rest}>
+            {children}
+        </div>
     ),
 }));
 
@@ -127,8 +133,8 @@ describe("Chat", () => {
 
     it("should pass withAutoFocus prop to ChatProvider", () => {
         const { container } = render(
-            <Chat withAutoFocus={true}>
-                <MessageInput data-testid="message-input" />
+            <Chat>
+                <MessageInput withAutoFocus data-testid="message-input" />
             </Chat>
         );
 
@@ -136,18 +142,29 @@ describe("Chat", () => {
         expect(container.innerHTML).toBeTruthy();
     });
 
-    it("should pass assistantIcon prop to ChatProvider", () => {
-        const CustomIcon = () => (
-            <div data-testid="custom-icon">Custom Icon</div>
+    it("should apply className to ChatWrapper", () => {
+        render(<Chat className="custom-class" />);
+        const wrapper = screen.getByTestId("chat-wrapper");
+        expect(wrapper).toHaveClass("custom-class");
+    });
+
+    it("should apply classNames to respective elements", () => {
+        render(
+            <Chat
+                classNames={{
+                    base: "base-class",
+                    content: "content-class",
+                    container: "container-class",
+                }}
+            />
         );
 
-        const { container } = render(
-            <Chat assistantIcon={<CustomIcon />}>
-                <MessageInput />
-            </Chat>
-        );
+        const wrapper = screen.getByTestId("chat-wrapper");
+        const content = screen.getByTestId("chat-content");
+        const container = screen.getByTestId("chat-container");
 
-        // Since ChatProvider is tested separately, we just verify the prop is passed
-        expect(container.innerHTML).toBeTruthy();
+        expect(wrapper).toHaveClass("base-class");
+        expect(content).toHaveClass("content-class");
+        expect(container).toHaveClass("container-class");
     });
 });

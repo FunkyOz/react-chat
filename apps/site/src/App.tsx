@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { FullScreenContainer } from "./styles/Container.styles";
 import {
     Chat,
     MessageInput,
@@ -67,8 +66,12 @@ function App() {
     };
 
     return (
-        <FullScreenContainer>
-            <Chat withAutoFocus assistantIcon={<div>T</div>}>
+        <div className="h-screen w-screen flex flex-col bg-white overflow-hidden">
+            <Chat
+                classNames={{
+                    container: "bg-black",
+                }}
+            >
                 <Sidebar items={conversations} title="Chat">
                     {(item, key) => (
                         <SidebarItem
@@ -95,9 +98,9 @@ function App() {
                         />
                     )}
                 </Messages>
-                <MessageInput onSend={handleSend} />
+                <MessageInput withAutoFocus onSend={handleSend} />
             </Chat>
-        </FullScreenContainer>
+        </div>
     );
 }
 

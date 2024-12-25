@@ -3,23 +3,24 @@ import { AssistantMessageProps } from "../../types";
 import {
     AssistantMessageContent,
     AssistantMessageWrapper,
-    AssistantIconWrapper,
+    IconWrapper,
 } from "./styles/messages.styles";
-import { useChatProvider } from "../../provider";
+import { AssistantIcon } from "../icons";
+import useClassNames from "../../hooks/useClassNames";
 
 export const AssistantMessage: React.FC<AssistantMessageProps> = ({
     children,
     endContent,
     className,
+    classNames,
+    icon = <AssistantIcon />,
 }) => {
-    const {
-        state: { assistantIcon },
-    } = useChatProvider();
+    const classes = useClassNames({ className, classNames });
 
     return (
-        <AssistantMessageWrapper className={className}>
-            <AssistantIconWrapper>{assistantIcon}</AssistantIconWrapper>
-            <AssistantMessageContent>
+        <AssistantMessageWrapper className={classes.base}>
+            <IconWrapper className={classes.icon}>{icon}</IconWrapper>
+            <AssistantMessageContent className={classes.content}>
                 {children}
                 {endContent}
             </AssistantMessageContent>

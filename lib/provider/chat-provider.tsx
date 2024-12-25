@@ -1,13 +1,6 @@
-import React, {
-    createContext,
-    useContext,
-    useReducer,
-    ReactNode,
-    useEffect,
-} from "react";
+import React, { createContext, useContext, useReducer, ReactNode } from "react";
 import { ChatProviderContextType } from "./types";
 import { chatReducer, initialState } from "./reducer";
-import { AssistantIcon } from "../components/icons/assistant-icon";
 
 const ChatContext = createContext<ChatProviderContextType | undefined>(
     undefined
@@ -23,25 +16,10 @@ export const useChatProvider = () => {
 
 type ChatProviderProps = {
     children: ReactNode;
-    withAutoFocus?: boolean;
-    assistantIcon?: React.ReactNode;
 };
 
-export const ChatProvider: React.FC<ChatProviderProps> = ({
-    children,
-    withAutoFocus,
-    assistantIcon,
-}) => {
-    const initialStateProps: typeof initialState = {
-        ...initialState,
-        withAutoFocus: withAutoFocus ?? false,
-        assistantIcon: assistantIcon ?? <AssistantIcon />,
-    };
-    const [state, dispatch] = useReducer(chatReducer, initialStateProps);
-
-    useEffect(() => {
-        dispatch({ type: "SET_AUTO_FOCUS", payload: withAutoFocus ?? false });
-    }, [withAutoFocus]);
+export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
+    const [state, dispatch] = useReducer(chatReducer, initialState);
 
     return (
         <ChatContext.Provider value={{ state, dispatch }}>

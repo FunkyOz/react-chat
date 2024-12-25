@@ -19,19 +19,10 @@ vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
     AssistantMessageContent: ({ children }: { children: React.ReactNode }) => (
         <div data-testid="assistant-message-content">{children}</div>
     ),
-    AssistantIconWrapper: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="assistant-icon-wrapper">{children}</div>
-    ),
     LoadingCircle: () => <div data-testid="loading-circle">Loading...</div>,
-}));
-
-// Mock the ChatProvider
-vi.mock("../../../lib/provider", () => ({
-    useChatProvider: () => ({
-        state: {
-            assistantIcon: <div data-testid="default-icon">AI</div>,
-        },
-    }),
+    IconWrapper: ({ children }: { children: React.ReactNode }) => (
+        <div data-testid="icon-wrapper">{children}</div>
+    ),
 }));
 
 describe("AssistantLoading", () => {
@@ -41,7 +32,9 @@ describe("AssistantLoading", () => {
     });
 
     it("should render assistant icon from context", () => {
-        render(<AssistantLoading />);
+        render(
+            <AssistantLoading icon={<div data-testid="default-icon">AI</div>} />
+        );
         expect(screen.getByTestId("default-icon")).toBeInTheDocument();
     });
 
@@ -55,15 +48,14 @@ describe("AssistantLoading", () => {
     it("should render with proper structure", () => {
         render(<AssistantLoading />);
 
-        expect(
-            screen.getByTestId("assistant-message-wrapper")
-        ).toBeInTheDocument();
-        expect(
-            screen.getByTestId("assistant-icon-wrapper")
-        ).toBeInTheDocument();
-        expect(
-            screen.getByTestId("assistant-message-content")
-        ).toBeInTheDocument();
-        expect(screen.getByTestId("loading-circle")).toBeInTheDocument();
+        const messageWrapper = screen.getByTestId("assistant-message-wrapper");
+        const iconWrapper = screen.getByTestId("icon-wrapper");
+        const content = screen.getByTestId("assistant-message-content");
+        const loading = screen.getByTestId("loading-circle");
+
+        expect(messageWrapper).toBeInTheDocument();
+        expect(iconWrapper).toBeInTheDocument();
+        expect(content).toBeInTheDocument();
+        expect(loading).toBeInTheDocument();
     });
 });

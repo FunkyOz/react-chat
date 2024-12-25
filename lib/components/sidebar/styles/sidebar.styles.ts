@@ -13,8 +13,8 @@ export const SidebarWrapper = styled.div.attrs(
 
 export const SidebarContainer = styled.div.attrs(
     withDevClassName("sidebar-container")
-)<{ $isOpen: boolean }>`
-    width: ${({ $isOpen }) => ($isOpen ? "16.25rem" : "0")};
+)<{ $isOpen?: boolean; $size?: number }>`
+    width: ${({ $isOpen, $size = 16 }) => ($isOpen ? `"${$size}rem"` : "0")};
     background: #f9f9f9;
     overflow: hidden;
     transition: width 0.3s ease;
@@ -25,8 +25,8 @@ export const SidebarContainer = styled.div.attrs(
 
 export const SidebarContent = styled.div.attrs(
     withDevClassName("sidebar-content")
-)`
-    width: 16.25rem;
+)<{ $size?: number }>`
+    width: ${({ $size }) => `${$size}rem`};
     height: 100%;
     overflow-y: auto;
     padding-top: 5.25rem;

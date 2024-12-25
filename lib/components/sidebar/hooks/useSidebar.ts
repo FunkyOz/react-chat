@@ -1,15 +1,18 @@
-import { ReactNode, isValidElement } from "react";
+import { ReactNode, isValidElement, useMemo } from "react";
 import { useChatProvider } from "../../../provider";
 import { SidebarItem } from "../sidebar-item";
+import { mRound } from "../../../utils";
 
 type UseSidebarReturn = {
     renderItems: () => ReactNode;
     handleToggle: () => any;
+    size: number;
 };
 
 type UseSidebarProps<T> = {
     items?: T[];
     children?: ReactNode | ((item: T, key: number) => ReactNode);
+    size?: number;
 };
 
 // Helper function to check if a React element is a SidebarItem
@@ -20,8 +23,14 @@ const isSidebarItemElement = (element: ReactNode): boolean => {
 export const useSidebar = <T>({
     items = [],
     children,
+    size,
 }: UseSidebarProps<T>): UseSidebarReturn => {
     const { dispatch } = useChatProvider();
+
+    const remSize = useMemo(
+        () => (size ? mRound(size / 16, 0.25) : 16),
+        [size]
+    );
 
     const renderItems = (): ReactNode => {
         if (typeof children === "function") {
@@ -50,6 +59,7 @@ export const useSidebar = <T>({
     };
 
     return {
+        size: remSize,
         renderItems,
         handleToggle,
     };

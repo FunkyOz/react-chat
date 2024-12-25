@@ -10,6 +10,7 @@
     "scripts": {
         "dev": "vite",
         "build": "tsc -b ./tsconfig.lib.json && vite build",
+        "build:watch": "vite build --watch",
         "analyse": "eslint . && tsc -b ./tsconfig.lib.json",
         "lint": "prettier -c ./**/*.{ts,tsx,js,jsx}",
         "lint:fix": "prettier -w ./**/*.{ts,tsx,js,jsx}",

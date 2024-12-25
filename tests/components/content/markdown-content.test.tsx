@@ -48,7 +48,7 @@ vi.mock(
         CodeLanguage: ({ children }: { children: React.ReactNode }) => (
             <div data-testid="code-language">{children}</div>
         ),
-        CodeCopyButton: ({
+        CopyButton: ({
             children,
             onClick,
             $isCopied,

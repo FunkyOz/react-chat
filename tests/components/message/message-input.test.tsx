@@ -2,7 +2,6 @@ import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { MessageInput } from "../../../lib/components/message/message-input";
-import { useChatProvider } from "../../../lib/provider";
 
 // Mock the styles
 vi.mock("../../../lib/components/message/styles/message-input.styles", () => ({
@@ -28,6 +27,7 @@ vi.mock("../../../lib/components/message/styles/message-input.styles", () => ({
             {children}
         </div>
     ),
+    /* eslint-disable react/display-name */
     Textarea: React.forwardRef<HTMLTextAreaElement>((props, ref) => (
         <textarea data-testid="textarea" {...props} ref={ref} />
     )),

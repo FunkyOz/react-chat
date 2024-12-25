@@ -19,7 +19,6 @@ vi.mock("react-markdown", () => ({
         );
     },
 }));
-import Markdown from "react-markdown";
 
 // Mock react-syntax-highlighter
 vi.mock("react-syntax-highlighter", () => ({

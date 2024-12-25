@@ -1,9 +1,7 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi, afterEach } from "vitest";
 import { Sidebar } from "../../../lib/components/sidebar/sidebar";
-import { MenuIcon } from "../../../lib/components/icons";
-import { ChatState, useChatProvider } from "../../../lib/provider";
 import { SidebarItem } from "../../../lib/components/sidebar/sidebar-item";
 
 // Mock the chat provider
@@ -88,12 +86,6 @@ vi.mock("../../../lib/components/sidebar/styles/sidebar.styles", () => ({
 }));
 
 describe("Sidebar", () => {
-    let chatProvider: ReturnType<typeof useChatProvider>;
-
-    beforeEach(() => {
-        chatProvider = useChatProvider();
-    });
-
     afterEach(() => {
         vi.clearAllMocks();
     });

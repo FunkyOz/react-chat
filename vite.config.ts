@@ -14,7 +14,6 @@ export default defineConfig({
         }),
     ],
     build: {
-        sourcemap: true,
         copyPublicDir: false,
         minify: "esbuild",
         lib: {

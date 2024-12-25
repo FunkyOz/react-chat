@@ -16,6 +16,7 @@ vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
             {children}
         </div>
     ),
+    /* eslint-disable react/display-name */
     BottomHelper: React.forwardRef<HTMLDivElement>((props, ref) => (
         <div data-testid="bottom-helper" ref={ref} />
     )),

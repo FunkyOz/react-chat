@@ -1,3 +1,4 @@
+import React from "react";
 import { MarkdownContentProps } from "../../types";
 import Markdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
@@ -13,11 +14,11 @@ import useMarkdownContent from "./hooks/useMarkdownContent";
 /**
  * A component that renders markdown content with proper styling
  */
-export const MarkdownContent = ({
+export const MarkdownContent: React.FC<MarkdownContentProps> = ({
     content,
     className,
     onCodeCopied,
-}: MarkdownContentProps) => {
+}) => {
     const { handleCopy, isCopied } = useMarkdownContent(onCodeCopied);
 
     return (

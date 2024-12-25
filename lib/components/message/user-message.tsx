@@ -1,15 +1,16 @@
+import React from "react";
 import {
     UserMessageContent,
     UserMessageWrapper,
 } from "./styles/messages.styles";
 import type { UserMessageProps } from "../../types";
 
-export const UserMessage = ({
+export const UserMessage: React.FC<UserMessageProps> = ({
     children,
     endContent,
     color,
     className,
-}: UserMessageProps) => {
+}) => {
     return (
         <UserMessageWrapper className={className}>
             <UserMessageContent $color={color}>

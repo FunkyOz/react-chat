@@ -1,19 +1,19 @@
 # React Chat
 
-[![Build Status](https://github.com/yourusername/react-chat/actions/workflows/main.yml/badge.svg)](https://github.com/yourusername/react-chat/actions)
-[![npm downloads](https://img.shields.io/npm/dm/react-chat.svg)](https://www.npmjs.com/package/react-chat)
-[![npm version](https://img.shields.io/npm/v/react-chat.svg)](https://www.npmjs.com/package/react-chat)
-[![License](https://img.shields.io/npm/l/react-chat.svg)](https://github.com/yourusername/react-chat/blob/main/LICENSE)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/FunkyOz/react-chat/tests.yml)
+
+![NPM Downloads](https://img.shields.io/npm/d18m/%40funkyoz%2Freact-chat)
+![NPM Version](https://img.shields.io/npm/v/%40funkyoz%2Freact-chat)
+![NPM License](https://img.shields.io/npm/l/%40funkyoz%2Freact-chat)
 
 A modern, customizable React chat component library that provides a complete chat interface with support for messages, sidebars, and custom styling.
 
 ## Requirements
 
-- React 18.3.1 or higher
-- React DOM 18.3.1 or higher
-- Styled Components 6.1.13 or higher
-- React Markdown 9.0.1 or higher
-- React Syntax Highlighter 15.6.1 or higher
+- React 18 or higher
+- Styled Components 6 or higher
+- React Markdown 9 or higher
+- React Syntax Highlighter 15 or higher
 
 ## Installation
 

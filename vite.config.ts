@@ -27,7 +27,6 @@ export default defineConfig({
                 "react/jsx-runtime",
                 "react-markdown",
                 "react-syntax-highlighter",
-                "styled-components",
             ],
             output: {
                 assetFileNames: "asset/[name][extname]",

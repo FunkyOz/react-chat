@@ -40,6 +40,10 @@ export type MessagesProps<T = any> = {
      */
     loadingContent?: ReactNode;
     /**
+     * Content to be rendered at the top of the messages list
+     */
+    headerContent?: ReactNode;
+    /**
      * Controls whether the loading content should be displayed
      */
     isLoading?: boolean;
@@ -52,6 +56,7 @@ export type MessagesProps<T = any> = {
      */
     classNames?: {
         base?: string;
+        header?: string;
     };
 };
 
@@ -155,7 +160,7 @@ export type SidebarProps<T> = {
     /**
      * The title of the sidebar
      */
-    title?: string;
+    headerContent?: ReactNode;
     /**
      * Whether to show the toggle button
      */

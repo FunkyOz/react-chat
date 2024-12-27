@@ -115,14 +115,6 @@ describe("MarkdownContent", () => {
         expect(onCodeCopied).toHaveBeenCalledWith("console.log('test')");
     });
 
-    it("renders with custom className", () => {
-        const className = "custom-markdown";
-        render(<MarkdownContent content="Test" className={className} />);
-
-        // The className should be passed to the Markdown component
-        // We can't test this directly due to the mock, but the prop is passed
-    });
-
     it("renders copy icon by default", () => {
         render(<MarkdownContent content="Some code" />);
 

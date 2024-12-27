@@ -3,18 +3,16 @@ import { withDevClassName } from "../../../utils";
 
 export const SidebarWrapper = styled.div.attrs(
     withDevClassName("sidebar-wrapper")
-)<{ $isOpen: boolean }>`
+)`
     position: relative;
     height: 100%;
     background: transparent;
-    border-right: ${({ $isOpen }) =>
-        $isOpen ? "0.0625rem solid #e5e7eb" : "none"};
 `;
 
 export const SidebarContainer = styled.div.attrs(
     withDevClassName("sidebar-container")
 )<{ $isOpen?: boolean; $size?: number }>`
-    width: ${({ $isOpen, $size = 16 }) => ($isOpen ? `"${$size}rem"` : "0")};
+    width: ${({ $isOpen, $size = 16 }) => ($isOpen ? `${$size}rem` : "0")};
     background: #f9f9f9;
     overflow: hidden;
     transition: width 0.3s ease;
@@ -29,7 +27,7 @@ export const SidebarContent = styled.div.attrs(
     width: ${({ $size }) => `${$size}rem`};
     height: 100%;
     overflow-y: auto;
-    padding-top: 5.25rem;
+    padding-top: 4rem;
 `;
 
 export const SidebarHeader = styled.div.attrs(
@@ -37,11 +35,10 @@ export const SidebarHeader = styled.div.attrs(
 )<{ $withToggle?: boolean; $isOpen: boolean }>`
     display: flex;
     align-items: center;
-    padding: 1.5rem 1rem 1.5rem
-        ${({ $withToggle }) => ($withToggle ? "4rem" : "1rem")};
-    border-bottom: 0.0625rem solid #e5e7eb;
+    padding: 0 1rem 0 ${({ $withToggle }) => ($withToggle ? "4rem" : "1rem")};
     background: #f9f9f9;
     position: absolute;
+    min-height: 3.75rem;
     top: 0;
     left: 0;
     right: 0;
@@ -69,10 +66,9 @@ export const ToggleButton = styled.button.attrs(
     border-radius: 0.375rem;
     background: transparent;
     cursor: pointer;
-    font-size: 1.125rem;
     color: #000000;
     position: absolute;
-    top: 1.3125rem;
+    top: 0.75rem;
     left: 1rem;
     z-index: 20;
     transform: ${({ $isOpen }) =>

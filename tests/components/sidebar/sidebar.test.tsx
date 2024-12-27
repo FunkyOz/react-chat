@@ -98,7 +98,7 @@ describe("Sidebar", () => {
     });
 
     it("renders with custom title", () => {
-        render(<Sidebar title="Test Title" />);
+        render(<Sidebar headerContent="Test Title" />);
 
         expect(screen.getByText("Test Title")).toBeInTheDocument();
     });
@@ -150,10 +150,6 @@ describe("Sidebar", () => {
     it("applies correct styles based on sidebar open state", () => {
         render(<Sidebar />);
 
-        expect(screen.getByTestId("sidebar-wrapper")).toHaveAttribute(
-            "data-is-open",
-            "true"
-        );
         expect(screen.getByTestId("sidebar-container")).toHaveAttribute(
             "data-is-open",
             "true"

@@ -2,12 +2,14 @@ import styled, { keyframes } from "styled-components";
 import { withDevClassName } from "../../../utils";
 
 const BaseMessageWrapper = styled.div.attrs(
-    withDevClassName("base-message-wrapper")
+    withDevClassName("message-wrapper")
 )`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     gap: 0.5rem;
+    max-width: 45rem;
+    margin: 0 auto;
 `;
 
 export const UserMessageWrapper = styled(BaseMessageWrapper).attrs(
@@ -41,7 +43,7 @@ export const AssistantMessageWrapper = styled(BaseMessageWrapper).attrs(
 `;
 
 const BaseMessageContent = styled.div.attrs(
-    withDevClassName("base-message-content")
+    withDevClassName("message-content")
 )`
     border-radius: 0.75rem;
     max-width: 80%;
@@ -94,15 +96,31 @@ export const LoadingCircle = styled.div.attrs(
     }
 `;
 
-export const MessagesWrapper = styled.div`
+export const MessagesWrapper = styled.div.attrs(
+    withDevClassName("messages-wrapper")
+)<{ $isWithHeader?: boolean }>`
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 4rem 1rem 0 1rem;
     gap: 1rem;
     position: relative;
-    width: 45rem;
-    margin: 0 auto;
+    width: 100%;
+    padding-top: ${({ $isWithHeader }) => ($isWithHeader ? "1rem" : "0")};
+`;
+
+export const MessagesHeader = styled.div.attrs(
+    withDevClassName("messages-header")
+)<{ $isSidebarOpen?: boolean }>`
+    display: flex;
+    align-items: center;
+    padding: 1rem ${({ $isSidebarOpen }) => (!$isSidebarOpen ? "4rem" : "1rem")};
+    min-height: 3.75rem;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: #ffffff;
 `;
 
 export const BottomHelper = styled.div`

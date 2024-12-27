@@ -28,10 +28,10 @@ jobs:
       run: |
         npm install
 
-    - name: Run analyse
+    - name: Coding Style Checks
       run: |
-        npm run analyse
+        npm run tests:lint
 
-    - name: Run lint
+    - name: Type Checks
       run: |
-        npm run lint 
+        npm run tests:types

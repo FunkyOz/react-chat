@@ -1,8 +1,13 @@
 import React from "react";
-import { MessagesWrapper, BottomHelper } from "./styles/messages.styles";
+import {
+    MessagesWrapper,
+    BottomHelper,
+    MessagesHeader,
+} from "./styles/messages.styles";
 import { MessagesProps } from "../../types";
 import { useScrollToBottom } from "./hooks/useScrollToBottom";
 import useClassNames from "../../hooks/useClassNames";
+import { useChatProvider } from "../../provider";
 
 export const Messages = <T extends object>({
     items = [],
@@ -11,8 +16,12 @@ export const Messages = <T extends object>({
     isLoading = false,
     className,
     classNames,
+    headerContent,
 }: MessagesProps<T>) => {
     const bottomRef = useScrollToBottom([children, isLoading]);
+    const {
+        state: { isSidebarOpen },
+    } = useChatProvider();
 
     const renderItems = () => {
         if (typeof children === "function") {
@@ -29,7 +38,18 @@ export const Messages = <T extends object>({
     const classes = useClassNames({ className, classNames });
 
     return (
-        <MessagesWrapper className={classes.base}>
+        <MessagesWrapper
+            className={classes.base}
+            $isWithHeader={!headerContent}
+        >
+            {headerContent && (
+                <MessagesHeader
+                    className={classes.header}
+                    $isSidebarOpen={isSidebarOpen}
+                >
+                    {headerContent}
+                </MessagesHeader>
+            )}
             {renderItems()}
             {isLoading && loadingContent}
             <BottomHelper ref={bottomRef} />

@@ -16,7 +16,7 @@ import useClassNames from "../../hooks/useClassNames";
 export const Sidebar = <T extends object>({
     items = [],
     children,
-    title,
+    headerContent,
     withToggle = true,
     toggleIcon = <MenuIcon />,
     size: pixelSize,
@@ -34,7 +34,7 @@ export const Sidebar = <T extends object>({
     const classes = useClassNames({ className, classNames });
 
     return (
-        <SidebarWrapper className={classes.base} $isOpen={isSidebarOpen}>
+        <SidebarWrapper className={classes.base}>
             {withToggle && (
                 <ToggleButton
                     className={classes.toggleButton}
@@ -55,7 +55,7 @@ export const Sidebar = <T extends object>({
                         $withToggle={withToggle}
                         $isOpen={isSidebarOpen}
                     >
-                        {title}
+                        {headerContent}
                     </SidebarHeader>
                     {renderItems()}
                 </SidebarContent>

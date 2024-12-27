@@ -72,7 +72,7 @@ function App() {
                     container: "bg-black",
                 }}
             >
-                <Sidebar items={conversations} title="Chat">
+                <Sidebar items={conversations}>
                     {(item, key) => (
                         <SidebarItem
                             key={key}
@@ -90,6 +90,7 @@ function App() {
                     items={activeConversation.messages}
                     isLoading={isLoading}
                     loadingContent={<AssistantLoading />}
+                    headerContent={<div>Test</div>}
                 >
                     {(message: Message) => (
                         <ChatMessage

@@ -3,7 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import { Messages } from "../../../lib/components/message/messages";
 
-// Mock the styles
 vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
     MessagesWrapper: ({
         children,
@@ -20,11 +19,25 @@ vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
     BottomHelper: React.forwardRef<HTMLDivElement>((props, ref) => (
         <div data-testid="bottom-helper" ref={ref} />
     )),
+    MessagesHeader: ({ children }: { children: React.ReactNode }) => (
+        <div data-testid="messages-header">{children}</div>
+    ),
 }));
 
-// Mock the useScrollToBottom hook
 vi.mock("../../../lib/components/message/hooks/useScrollToBottom", () => ({
     useScrollToBottom: () => ({ current: { scrollIntoView: vi.fn() } }),
+}));
+
+vi.mock("../../../lib/provider", () => ({
+    useChatProvider: vi.fn(() => ({
+        state: {
+            isSidebarOpen: true,
+            isDarkMode: false,
+            withAutoFocus: false,
+            assistantIcon: null,
+        },
+        dispatch: vi.fn(),
+    })),
 }));
 
 describe("Messages", () => {

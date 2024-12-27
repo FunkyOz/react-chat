@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18, 19, 20, 21, 22, 23]
+        node-version: [18, 20, 22, 23]
 
     steps:
     - name: Checkout code
@@ -24,13 +24,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Install Peer Dependencies
-      run: |
-        npm install react@18 react-markdown@9 react-syntax-highlighter@15 styled-components@6
-
     - name: Install dependencies
       run: |
-        npm install --force
+        npm install
 
     - name: Coding Style Checks
       run: |

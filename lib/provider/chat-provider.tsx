@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useReducer, ReactNode } from "react";
 import { ChatProviderContextType } from "./types";
 import { chatReducer, initialState } from "./reducer";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const ChatContext = createContext<ChatProviderContextType | undefined>(
     undefined
@@ -19,7 +20,11 @@ type ChatProviderProps = {
 };
 
 export const ChatProvider: React.FC<ChatProviderProps> = ({ children }) => {
-    const [state, dispatch] = useReducer(chatReducer, initialState);
+    const isMobile = useMediaQuery("(max-width: 768px)");
+    const [state, dispatch] = useReducer(chatReducer, {
+        ...initialState,
+        isSidebarOpen: !isMobile,
+    });
 
     return (
         <ChatContext.Provider value={{ state, dispatch }}>

@@ -6,7 +6,10 @@ import { Sidebar } from "../../../lib/components/sidebar/sidebar";
 import { MessageInput } from "../../../lib/components/message/message-input";
 import { Messages } from "../../../lib/components/message/messages";
 
-// Mock the components
+vi.mock("../../../lib/hooks/useMediaQuery", () => ({
+    useMediaQuery: vi.fn(() => false),
+}));
+
 vi.mock("../../../lib/components/sidebar/sidebar", () => ({
     Sidebar: ({
         children,

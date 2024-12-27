@@ -11,14 +11,25 @@ export const SidebarWrapper = styled.div.attrs(
 
 export const SidebarContainer = styled.div.attrs(
     withDevClassName("sidebar-container")
-)<{ $isOpen?: boolean; $size?: number }>`
+)<{ $isOpen?: boolean; $size?: number; $isMobile?: boolean }>`
     width: ${({ $isOpen, $size = 16 }) => ($isOpen ? `${$size}rem` : "0")};
     background: #f9f9f9;
     overflow: hidden;
-    transition: width 0.3s ease;
+    transition: width ${({ $isMobile }) => ($isMobile ? "0.1s" : "0.3s")} ease;
     display: flex;
     flex-direction: column;
     height: 100%;
+    ${({ $isMobile }) =>
+        $isMobile &&
+        `
+            position: absolute;
+            z-index: 30;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        `}
 `;
 
 export const SidebarContent = styled.div.attrs(
@@ -70,7 +81,7 @@ export const ToggleButton = styled.button.attrs(
     position: absolute;
     top: 0.75rem;
     left: 1rem;
-    z-index: 20;
+    z-index: 40;
     transform: ${({ $isOpen }) =>
         $isOpen ? "rotate(-180deg)" : "rotate(0deg)"};
     transition: all 0.3s ease;

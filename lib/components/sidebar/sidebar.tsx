@@ -12,6 +12,8 @@ import { useSidebar } from "./hooks/useSidebar";
 import { MenuIcon } from "../icons";
 import { useChatProvider } from "../../provider";
 import useClassNames from "../../hooks/useClassNames";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { useSidebarHandler } from "./hooks/useSidebarHandler";
 
 export const Sidebar = <T extends object>({
     items = [],
@@ -23,15 +25,17 @@ export const Sidebar = <T extends object>({
     className,
     classNames,
 }: SidebarProps<T>) => {
-    const { renderItems, handleToggle, size } = useSidebar({
+    const { renderItems, size } = useSidebar({
         items,
         children,
         size: pixelSize,
     });
+    const { handleToggle } = useSidebarHandler();
     const {
         state: { isSidebarOpen },
     } = useChatProvider();
     const classes = useClassNames({ className, classNames });
+    const isMobile = useMediaQuery("(max-width: 768px)");
 
     return (
         <SidebarWrapper className={classes.base}>
@@ -48,6 +52,7 @@ export const Sidebar = <T extends object>({
                 className={classes.container}
                 $isOpen={isSidebarOpen}
                 $size={size}
+                $isMobile={isMobile}
             >
                 <SidebarContent className={classes.content} $size={size}>
                     <SidebarHeader

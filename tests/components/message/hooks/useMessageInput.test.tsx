@@ -6,7 +6,7 @@ import { useMessageInput } from "../../../../lib/components/message/hooks/useMes
 // Mock ChatProvider context
 vi.mock("../../../../lib/provider", () => ({
     useChatProvider: () => ({
-        state: { withAutoFocus: false },
+        state: { isSidebarOpen: true },
     }),
 }));
 

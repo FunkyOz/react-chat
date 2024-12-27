@@ -1,11 +1,9 @@
 import { ReactNode, isValidElement, useMemo } from "react";
-import { useChatProvider } from "../../../provider";
 import { SidebarItem } from "../sidebar-item";
 import { mRound } from "../../../utils";
 
 type UseSidebarReturn = {
     renderItems: () => ReactNode;
-    handleToggle: () => any;
     size: number;
 };
 
@@ -25,8 +23,6 @@ export const useSidebar = <T>({
     children,
     size,
 }: UseSidebarProps<T>): UseSidebarReturn => {
-    const { dispatch } = useChatProvider();
-
     const remSize = useMemo(
         () => (size ? mRound(size / 16, 0.25) : 16),
         [size]
@@ -54,13 +50,8 @@ export const useSidebar = <T>({
         return children as ReactNode;
     };
 
-    const handleToggle = () => {
-        dispatch({ type: "TOGGLE_SIDEBAR" });
-    };
-
     return {
         size: remSize,
         renderItems,
-        handleToggle,
     };
 };

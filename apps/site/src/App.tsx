@@ -67,11 +67,7 @@ function App() {
 
     return (
         <div className="h-screen w-screen flex flex-col bg-white overflow-hidden">
-            <Chat
-                classNames={{
-                    container: "bg-black",
-                }}
-            >
+            <Chat>
                 <Sidebar items={conversations}>
                     {(item, key) => (
                         <SidebarItem

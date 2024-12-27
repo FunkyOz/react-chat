@@ -32,9 +32,6 @@ vi.mock("../../../lib/provider", () => ({
     useChatProvider: vi.fn(() => ({
         state: {
             isSidebarOpen: true,
-            isDarkMode: false,
-            withAutoFocus: false,
-            assistantIcon: null,
         },
         dispatch: vi.fn(),
     })),

@@ -9,7 +9,7 @@ import { useScrollToBottom } from "./hooks/useScrollToBottom";
 import useClassNames from "../../hooks/useClassNames";
 import { useChatProvider } from "../../provider";
 
-export const Messages = <T extends object>({
+export function Messages<T>({
     items = [],
     children,
     loadingContent,
@@ -17,8 +17,8 @@ export const Messages = <T extends object>({
     className,
     classNames,
     headerContent,
-}: MessagesProps<T>) => {
-    const bottomRef = useScrollToBottom([children, isLoading]);
+}: MessagesProps<T>) {
+    const bottomRef = useScrollToBottom([items, isLoading]);
     const {
         state: { isSidebarOpen },
     } = useChatProvider();
@@ -55,6 +55,6 @@ export const Messages = <T extends object>({
             <BottomHelper ref={bottomRef} />
         </MessagesWrapper>
     );
-};
+}
 
 Messages.displayName = "Messages";

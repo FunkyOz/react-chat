@@ -9,7 +9,9 @@ const BaseMessageWrapper = styled.div.attrs(
     align-items: flex-start;
     gap: 0.5rem;
     max-width: 45rem;
+    width: 100%;
     margin: 0 auto;
+    padding: 0 1rem;
 `;
 
 export const UserMessageWrapper = styled(BaseMessageWrapper).attrs(
@@ -62,6 +64,7 @@ export const AssistantMessageContent = styled(BaseMessageContent).attrs(
     withDevClassName("assistant-message-content")
 )`
     color: #000000;
+    white-space: normal;
 `;
 
 const pulse = keyframes`

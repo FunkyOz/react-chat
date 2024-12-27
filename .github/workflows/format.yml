@@ -24,6 +24,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Install Peer Dependencies
+      run: |
+        npm install react@18 react-markdown@9 react-syntax-highlighter@15 styled-components@6
+
     - name: Install dependencies
       run: |
         npm install

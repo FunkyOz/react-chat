@@ -33,7 +33,7 @@ const ChatHelper: React.FC<ChatProps> = ({
     className,
     classNames,
 }) => {
-    const { sidebar, messageInput, messages } = useChat(children);
+    const { sidebar, messageInput, messages, others } = useChat(children);
     const classes = useClassNames({ className, classNames });
     const isMobile = useMediaQuery("(max-width: 768px)");
     const { handleClose } = useSidebarHandler();
@@ -49,6 +49,7 @@ const ChatHelper: React.FC<ChatProps> = ({
                     <ChatLayer onClick={handleClose} />
                 )}
                 <ChatContainer className={classes?.container}>
+                    {others}
                     {messages}
                     {messageInput}
                 </ChatContainer>

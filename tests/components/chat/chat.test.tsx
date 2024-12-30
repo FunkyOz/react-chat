@@ -99,25 +99,6 @@ describe("Chat", () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    it("should ignore invalid children", () => {
-        render(
-            <Chat>
-                <div data-testid="invalid-child">Invalid Child</div>
-                <Sidebar data-testid="sidebar" />
-                <Messages data-testid="messages" />
-                <MessageInput data-testid="message-input" />
-            </Chat>
-        );
-
-        const content = screen.getByTestId("chat-content");
-        const container = screen.getByTestId("chat-container");
-
-        expect(screen.queryByTestId("invalid-child")).not.toBeInTheDocument();
-        expect(content).toContainElement(screen.getByTestId("sidebar"));
-        expect(container).toContainElement(screen.getByTestId("messages"));
-        expect(container).toContainElement(screen.getByTestId("message-input"));
-    });
-
     it("should handle multiple instances of the same component type", () => {
         render(
             <Chat>

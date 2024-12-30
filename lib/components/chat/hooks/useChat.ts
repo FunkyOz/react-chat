@@ -6,6 +6,7 @@ type UseChatReturn = {
     sidebar: ReactNode;
     messageInput: ReactNode;
     messages: ReactNode;
+    others: ReactNode[];
 };
 
 const isSidebarElement = (child: ReactNode): child is ReactElement => {
@@ -37,9 +38,19 @@ export const useChat = (children: ReactNode): UseChatReturn => {
         return childrenAsArray.find(isMessagesElement);
     }, [childrenAsArray]);
 
+    const others = useMemo(() => {
+        return childrenAsArray.filter(
+            (child) =>
+                !isSidebarElement(child) &&
+                !isMessageInputElement(child) &&
+                !isMessagesElement(child)
+        );
+    }, [childrenAsArray]);
+
     return {
         sidebar,
         messageInput,
         messages,
+        others,
     };
 };

@@ -84,6 +84,7 @@ function App() {
                         </SidebarItem>
                     )}
                 </Sidebar>
+                <div>Test</div>
                 <Messages
                     items={activeConversation.messages}
                     isLoading={isLoading}

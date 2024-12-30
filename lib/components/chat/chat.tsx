@@ -49,8 +49,8 @@ const ChatHelper: React.FC<ChatProps> = ({
                     <ChatLayer onClick={handleClose} />
                 )}
                 <ChatContainer className={classes?.container}>
-                    {others}
                     {messages}
+                    {others}
                     {messageInput}
                 </ChatContainer>
             </ChatContent>

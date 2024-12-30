@@ -125,6 +125,10 @@ export type MessageInputProps = {
      */
     onSend?: (message: string) => void;
     /**
+     * The function to call when the value changes
+     */
+    onChange?: (message: string) => void;
+    /**
      * The placeholder text for the message input
      */
     placeholder?: string;
@@ -146,9 +150,14 @@ export type MessageInputProps = {
     classNames?: {
         base?: string;
         container?: string;
+        textareaContainer?: string;
         textarea?: string;
         sendButton?: string;
     };
+    /**
+     * The content to display at the end of the message input
+     */
+    bottomContent?: ReactNode;
 };
 
 export type SidebarProps<T> = {

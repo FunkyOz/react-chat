@@ -5,16 +5,11 @@ import { MessageInput } from "../../../lib/components/message/message-input";
 
 // Mock the styles
 vi.mock("../../../lib/components/message/styles/message-input.styles", () => ({
-    MessageInputContainer: ({
-        children,
-        $isSidebarOpen,
-    }: {
-        children: React.ReactNode;
-        $isSidebarOpen: boolean;
-    }) => (
-        <div data-testid="input-container" data-sidebar-open={$isSidebarOpen}>
-            {children}
-        </div>
+    MessageInputContainer: ({ children }: { children: React.ReactNode }) => (
+        <div data-testid="input-container">{children}</div>
+    ),
+    TextareaContainer: ({ children }: { children: React.ReactNode }) => (
+        <div data-testid="textarea-container">{children}</div>
     ),
     MessageInputWrapper: ({
         children,
@@ -60,15 +55,6 @@ vi.mock("../../../lib/components/message/hooks/useMessageInput", () => ({
         handleKeyDown: vi.fn(),
         handleSend: () => onSend("test message"),
     }),
-}));
-
-// Mock the ChatProvider
-const mockUseChatProvider = vi.fn().mockReturnValue({
-    state: { isSidebarOpen: false },
-});
-
-vi.mock("../../../lib/provider", () => ({
-    useChatProvider: () => mockUseChatProvider(),
 }));
 
 describe("MessageInput", () => {
@@ -124,18 +110,5 @@ describe("MessageInput", () => {
         render(<MessageInput onSend={() => {}} value="initial value" />);
 
         expect(screen.getByTestId("textarea")).toHaveValue("initial value");
-    });
-
-    it("should adjust container based on sidebar state", () => {
-        mockUseChatProvider.mockReturnValueOnce({
-            state: { isSidebarOpen: true },
-        });
-
-        render(<MessageInput onSend={() => {}} />);
-
-        expect(screen.getByTestId("input-container")).toHaveAttribute(
-            "data-sidebar-open",
-            "true"
-        );
     });
 });

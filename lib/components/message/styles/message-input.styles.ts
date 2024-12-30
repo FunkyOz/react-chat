@@ -10,9 +10,9 @@ export const MessageInputWrapper = styled.div`
     z-index: 10;
 `;
 
-export const MessageInputContainer = styled.div<{ $isSidebarOpen: boolean }>`
+export const MessageInputContainer = styled.div`
     display: flex;
-    gap: 0.5rem;
+    flex-direction: column;
     padding: 0.75rem 1rem;
     background: #f3f3f3;
     align-items: center;
@@ -22,6 +22,14 @@ export const MessageInputContainer = styled.div<{ $isSidebarOpen: boolean }>`
     transition: width 0.3s ease;
     width: 100%;
     border-radius: 0.75rem;
+`;
+
+export const TextareaContainer = styled.div`
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background: #f3f3f3;
+    width: 100%;
 `;
 
 export const Textarea = styled.textarea`

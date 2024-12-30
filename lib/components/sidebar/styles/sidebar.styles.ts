@@ -1,17 +1,16 @@
 import styled from "styled-components";
-import { withDevClassName } from "../../../utils";
 
-export const SidebarWrapper = styled.div.attrs(
-    withDevClassName("sidebar-wrapper")
-)`
+export const SidebarWrapper = styled.div`
     position: relative;
     height: 100%;
     background: transparent;
 `;
 
-export const SidebarContainer = styled.div.attrs(
-    withDevClassName("sidebar-container")
-)<{ $isOpen?: boolean; $size?: number; $isMobile?: boolean }>`
+export const SidebarContainer = styled.div<{
+    $isOpen?: boolean;
+    $size?: number;
+    $isMobile?: boolean;
+}>`
     width: ${({ $isOpen, $size = 16 }) => ($isOpen ? `${$size}rem` : "0")};
     background: #f9f9f9;
     overflow: hidden;
@@ -32,18 +31,17 @@ export const SidebarContainer = styled.div.attrs(
         `}
 `;
 
-export const SidebarContent = styled.div.attrs(
-    withDevClassName("sidebar-content")
-)<{ $size?: number }>`
+export const SidebarContent = styled.div<{ $size?: number }>`
     width: ${({ $size }) => `${$size}rem`};
     height: 100%;
     overflow-y: auto;
     padding-top: 4rem;
 `;
 
-export const SidebarHeader = styled.div.attrs(
-    withDevClassName("sidebar-header")
-)<{ $withToggle?: boolean; $isOpen: boolean }>`
+export const SidebarHeader = styled.div<{
+    $withToggle?: boolean;
+    $isOpen: boolean;
+}>`
     display: flex;
     align-items: center;
     padding: 0 1rem 0 ${({ $withToggle }) => ($withToggle ? "4rem" : "1rem")};
@@ -65,9 +63,7 @@ export const SidebarHeader = styled.div.attrs(
     }
 `;
 
-export const ToggleButton = styled.button.attrs(
-    withDevClassName("toggle-button")
-)<{ $isOpen: boolean }>`
+export const ToggleButton = styled.button<{ $isOpen: boolean }>`
     display: flex;
     align-items: center;
     justify-content: center;

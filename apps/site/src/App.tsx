@@ -65,6 +65,8 @@ function App() {
         setIsLoading(false);
     };
 
+    const [message, setMessage] = useState("");
+
     return (
         <div className="h-screen w-screen flex flex-col bg-white overflow-hidden">
             <Chat>
@@ -95,7 +97,13 @@ function App() {
                         />
                     )}
                 </Messages>
-                <MessageInput withAutoFocus onSend={handleSend} />
+                <MessageInput
+                    value={message}
+                    withAutoFocus
+                    onSend={handleSend}
+                    onChange={setMessage}
+                    bottomContent={<div>{message}</div>}
+                />
             </Chat>
         </div>
     );

@@ -1,16 +1,11 @@
 import styled from "styled-components";
-import { withDevClassName } from "../../../utils";
 
-export const SidebarItemContainer = styled.div.attrs(
-    withDevClassName("sidebar-item-container")
-)`
+export const SidebarItemContainer = styled.div`
     padding: 0 0.75rem;
     background-color: transparent;
 `;
 
-export const SidebarItemContent = styled.div.attrs(
-    withDevClassName("sidebar-item-content")
-)<{ $isActive?: boolean }>`
+export const SidebarItemContent = styled.div<{ $isActive?: boolean }>`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

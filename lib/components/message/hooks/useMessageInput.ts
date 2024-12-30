@@ -10,12 +10,14 @@ type UseMessageInputReturn = {
 
 type UseMessageInputProps = {
     onSend?: (message: string) => void;
+    onChange?: (message: string) => void;
     value?: string;
     withAutoFocus?: boolean;
 };
 
 export const useMessageInput = ({
     onSend,
+    onChange,
     value = "",
     withAutoFocus = false,
 }: UseMessageInputProps): UseMessageInputReturn => {
@@ -26,7 +28,12 @@ export const useMessageInput = ({
         setMessage(value);
     }, [value]);
 
-    // Handle initial focus only
+    useEffect(() => {
+        if (onChange) {
+            onChange(message);
+        }
+    }, [message]);
+
     useEffect(() => {
         if (withAutoFocus && textareaRef.current) {
             textareaRef.current.focus();
@@ -34,8 +41,9 @@ export const useMessageInput = ({
     }, []);
 
     const handleSend = () => {
-        if (message.trim() && onSend) {
-            onSend(message.trim());
+        const m = message.trim();
+        if (m && onSend) {
+            onSend(m);
             setMessage("");
         }
     };
@@ -43,14 +51,11 @@ export const useMessageInput = ({
     const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === "Enter") {
             if (e.shiftKey) {
-                // Allow new line with Shift+Enter
                 return;
             }
 
             e.preventDefault();
-            if (message.trim()) {
-                handleSend();
-            }
+            handleSend();
 
             if (textareaRef.current) {
                 textareaRef.current.style.height = "1.5rem";

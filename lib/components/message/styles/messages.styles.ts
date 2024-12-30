@@ -1,9 +1,6 @@
 import styled, { keyframes } from "styled-components";
-import { withDevClassName } from "../../../utils";
 
-const BaseMessageWrapper = styled.div.attrs(
-    withDevClassName("message-wrapper")
-)`
+const BaseMessageWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -14,13 +11,11 @@ const BaseMessageWrapper = styled.div.attrs(
     padding: 0 1rem;
 `;
 
-export const UserMessageWrapper = styled(BaseMessageWrapper).attrs(
-    withDevClassName("user-message-wrapper")
-)`
+export const UserMessageWrapper = styled(BaseMessageWrapper)`
     justify-content: flex-end;
 `;
 
-export const IconWrapper = styled.div.attrs(withDevClassName("icon-wrapper"))`
+export const IconWrapper = styled.div`
     background-color: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 50%;
@@ -32,9 +27,7 @@ export const IconWrapper = styled.div.attrs(withDevClassName("icon-wrapper"))`
     min-height: 2rem;
 `;
 
-export const AssistantMessageWrapper = styled(BaseMessageWrapper).attrs(
-    withDevClassName("assistant-message-wrapper")
-)`
+export const AssistantMessageWrapper = styled(BaseMessageWrapper)`
     justify-content: flex-start;
 
     ${IconWrapper} svg {
@@ -44,25 +37,21 @@ export const AssistantMessageWrapper = styled(BaseMessageWrapper).attrs(
     }
 `;
 
-const BaseMessageContent = styled.div.attrs(
-    withDevClassName("message-content")
-)`
+const BaseMessageContent = styled.div`
     border-radius: 0.75rem;
     max-width: 80%;
     position: relative;
 `;
 
-export const UserMessageContent = styled(BaseMessageContent).attrs(
-    withDevClassName("user-message-content")
-)<{ $color?: string }>`
+export const UserMessageContent = styled(BaseMessageContent)<{
+    $color?: string;
+}>`
     background-color: ${({ $color }) => $color || "#2563eb"};
     color: #ffffff;
     padding: 0.75rem 1rem;
 `;
 
-export const AssistantMessageContent = styled(BaseMessageContent).attrs(
-    withDevClassName("assistant-message-content")
-)`
+export const AssistantMessageContent = styled(BaseMessageContent)`
     color: #000000;
     white-space: normal;
 `;
@@ -72,9 +61,7 @@ const pulse = keyframes`
     40% { transform: scale(0.6); }
 `;
 
-export const LoadingCircle = styled.div.attrs(
-    withDevClassName("loading-circle")
-)`
+export const LoadingCircle = styled.div`
     display: flex;
     gap: 0.5rem;
     padding: 0.25rem;
@@ -99,9 +86,7 @@ export const LoadingCircle = styled.div.attrs(
     }
 `;
 
-export const MessagesWrapper = styled.div.attrs(
-    withDevClassName("messages-wrapper")
-)<{ $isWithHeader?: boolean }>`
+export const MessagesWrapper = styled.div<{ $isWithHeader?: boolean }>`
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -111,9 +96,7 @@ export const MessagesWrapper = styled.div.attrs(
     padding-top: ${({ $isWithHeader }) => ($isWithHeader ? "1rem" : "0")};
 `;
 
-export const MessagesHeader = styled.div.attrs(
-    withDevClassName("messages-header")
-)<{ $isSidebarOpen?: boolean }>`
+export const MessagesHeader = styled.div<{ $isSidebarOpen?: boolean }>`
     display: flex;
     align-items: center;
     padding: 1rem ${({ $isSidebarOpen }) => (!$isSidebarOpen ? "4rem" : "1rem")};

@@ -16,9 +16,7 @@ export const Chat: React.FC<ChatProps> = (props) => {
     const { children, ...rest } = props;
     return (
         <ChatProvider>
-            <ChatHelper {...rest}>
-                {children}
-            </ChatHelper>
+            <ChatHelper {...rest}>{children}</ChatHelper>
         </ChatProvider>
     );
 };

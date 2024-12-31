@@ -24,10 +24,6 @@ vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
     ),
 }));
 
-vi.mock("../../../lib/components/message/hooks/useScrollToBottom", () => ({
-    useScrollToBottom: () => ({ current: { scrollIntoView: vi.fn() } }),
-}));
-
 vi.mock("../../../lib/provider", () => ({
     useChatProvider: vi.fn(() => ({
         state: {
@@ -101,15 +97,5 @@ describe("Messages", () => {
         expect(screen.getByTestId("messages-wrapper")).toHaveClass(
             "custom-class"
         );
-    });
-
-    it("should render bottom helper for scrolling", () => {
-        render(
-            <Messages>
-                <div>Content</div>
-            </Messages>
-        );
-
-        expect(screen.getByTestId("bottom-helper")).toBeInTheDocument();
     });
 });

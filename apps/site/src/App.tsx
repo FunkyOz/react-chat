@@ -71,7 +71,7 @@ function App() {
         <div className="h-screen w-screen flex flex-col bg-white overflow-hidden">
             <Chat>
                 <Sidebar items={conversations}>
-                    {(item, key) => (
+                    {(item: Conversation, key: number) => (
                         <SidebarItem
                             key={key}
                             onClick={() => handleConversationClick(item)}

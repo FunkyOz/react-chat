@@ -39,7 +39,7 @@ vi.mock("../../../../lib/components/message/messages", () => ({
 
 describe("useChat", () => {
     it("should handle empty children", () => {
-        const { result } = renderHook(() => useChat(null));
+        const { result } = renderHook(() => useChat({ children: null }));
 
         expect(result.current.sidebar).toBeUndefined();
         expect(result.current.messageInput).toBeUndefined();
@@ -48,7 +48,7 @@ describe("useChat", () => {
 
     it("should extract single child components correctly", () => {
         const children = <Sidebar />;
-        const { result } = renderHook(() => useChat(children));
+        const { result } = renderHook(() => useChat({ children }));
 
         expect(result.current.sidebar).toBeDefined();
         expect(result.current.messageInput).toBeUndefined();
@@ -62,7 +62,7 @@ describe("useChat", () => {
             <MessageInput key="input" />,
         ];
 
-        const { result } = renderHook(() => useChat(children));
+        const { result } = renderHook(() => useChat({ children }));
 
         expect(result.current.sidebar).toBeDefined();
         expect(result.current.messageInput).toBeDefined();
@@ -77,7 +77,7 @@ describe("useChat", () => {
             <MessageInput key="input" />,
         ];
 
-        const { result } = renderHook(() => useChat(children));
+        const { result } = renderHook(() => useChat({ children }));
 
         expect(result.current.sidebar).toBeDefined();
         expect(result.current.messageInput).toBeDefined();
@@ -92,7 +92,7 @@ describe("useChat", () => {
             <MessageInput key="input" />,
         ];
 
-        const { result } = renderHook(() => useChat(children));
+        const { result } = renderHook(() => useChat({ children }));
 
         expect(result.current.sidebar).toBeDefined();
         expect(
@@ -110,7 +110,7 @@ describe("useChat", () => {
             <MessageInput key="input" />,
         ];
 
-        const { result } = renderHook(() => useChat(children));
+        const { result } = renderHook(() => useChat({ children }));
 
         expect(result.current.sidebar).toBeDefined();
         expect(result.current.messageInput).toBeDefined();
@@ -125,7 +125,7 @@ describe("useChat", () => {
         ];
 
         const { result, rerender } = renderHook(
-            ({ children }) => useChat(children),
+            ({ children }) => useChat({ children }),
             { initialProps: { children } }
         );
 

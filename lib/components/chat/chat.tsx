@@ -33,7 +33,9 @@ const ChatHelper: React.FC<ChatProps> = ({
     className,
     classNames,
 }) => {
-    const { sidebar, messageInput, messages, others } = useChat(children);
+    const { scrollableRef, sidebar, messageInput, messages, others } = useChat({
+        children,
+    });
     const classes = useClassNames({ className, classNames });
     const isMobile = useMediaQuery("(max-width: 768px)");
     const { handleClose } = useSidebarHandler();
@@ -48,7 +50,10 @@ const ChatHelper: React.FC<ChatProps> = ({
                 {isMobile && isSidebarOpen && (
                     <ChatLayer onClick={handleClose} />
                 )}
-                <ChatContainer className={classes?.container}>
+                <ChatContainer
+                    ref={scrollableRef}
+                    className={classes?.container}
+                >
                     {messages}
                     {others}
                     {messageInput}

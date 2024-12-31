@@ -1,11 +1,6 @@
 import React from "react";
-import {
-    MessagesWrapper,
-    BottomHelper,
-    MessagesHeader,
-} from "./styles/messages.styles";
+import { MessagesWrapper, MessagesHeader } from "./styles/messages.styles";
 import { MessagesProps } from "../../types";
-import { useScrollToBottom } from "./hooks/useScrollToBottom";
 import useClassNames from "../../hooks/useClassNames";
 import { useChatProvider } from "../../provider";
 
@@ -18,7 +13,6 @@ export function Messages<T>({
     classNames,
     headerContent,
 }: MessagesProps<T>) {
-    const bottomRef = useScrollToBottom([items, isLoading]);
     const {
         state: { isSidebarOpen },
     } = useChatProvider();
@@ -52,7 +46,6 @@ export function Messages<T>({
             )}
             {renderItems()}
             {isLoading && loadingContent}
-            <BottomHelper ref={bottomRef} />
         </MessagesWrapper>
     );
 }

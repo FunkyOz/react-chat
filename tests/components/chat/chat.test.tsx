@@ -1,10 +1,13 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import "@testing-library/jest-dom";
 import { Chat } from "../../../lib/components/chat/chat";
 import { Sidebar } from "../../../lib/components/sidebar/sidebar";
 import { MessageInput } from "../../../lib/components/message/message-input";
 import { Messages } from "../../../lib/components/message/messages";
+
+Element.prototype.scrollTo = vi.fn();
 
 vi.mock("../../../lib/hooks/useMediaQuery", () => ({
     useMediaQuery: vi.fn(() => false),
@@ -51,14 +54,22 @@ vi.mock("../../../lib/components/chat/styles/chat.styles", () => ({
             {children}
         </div>
     ),
-    ChatContainer: ({ children, ...rest }: { children: React.ReactNode }) => (
-        <div data-testid="chat-container" {...rest}>
+    /* eslint-disable react/display-name */
+    ChatContainer: React.forwardRef<
+        HTMLDivElement,
+        { children: React.ReactNode }
+    >(({ children, ...rest }, ref) => (
+        <div ref={ref} data-testid="chat-container" {...rest}>
             {children}
         </div>
-    ),
+    )),
 }));
 
 describe("Chat", () => {
+    afterEach(() => {
+        vi.clearAllMocks();
+    });
+
     it("should render chat structure correctly", () => {
         render(<Chat />);
 

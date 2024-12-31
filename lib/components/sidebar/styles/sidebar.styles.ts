@@ -1,9 +1,11 @@
 import styled from "styled-components";
 
 export const SidebarWrapper = styled.div`
-    position: relative;
+    position: fixed;
+    left: 0;
     height: 100%;
     background: transparent;
+    z-index: 30;
 `;
 
 export const SidebarContainer = styled.div<{
@@ -18,6 +20,7 @@ export const SidebarContainer = styled.div<{
     display: flex;
     flex-direction: column;
     height: 100%;
+    padding-top: 4rem;
     ${({ $isMobile }) =>
         $isMobile &&
         `
@@ -35,7 +38,6 @@ export const SidebarContent = styled.div<{ $size?: number }>`
     width: ${({ $size }) => `${$size}rem`};
     height: 100%;
     overflow-y: auto;
-    padding-top: 4rem;
 `;
 
 export const SidebarHeader = styled.div<{

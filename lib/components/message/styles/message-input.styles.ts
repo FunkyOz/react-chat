@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MessageInputWrapper = styled.div`
-    position: sticky;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;

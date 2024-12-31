@@ -3,6 +3,7 @@ import { MessagesWrapper, MessagesHeader } from "./styles/messages.styles";
 import { MessagesProps } from "../../types";
 import useClassNames from "../../hooks/useClassNames";
 import { useChatProvider } from "../../provider";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 export function Messages<T>({
     items = [],
@@ -16,6 +17,7 @@ export function Messages<T>({
     const {
         state: { isSidebarOpen },
     } = useChatProvider();
+    const isMobile = useMediaQuery("(max-width: 768px)");
 
     const renderItems = () => {
         if (typeof children === "function") {
@@ -34,12 +36,13 @@ export function Messages<T>({
     return (
         <MessagesWrapper
             className={classes.base}
-            $isWithHeader={!headerContent}
+            $withHeader={Boolean(headerContent)}
         >
             {headerContent && (
                 <MessagesHeader
                     className={classes.header}
                     $isSidebarOpen={isSidebarOpen}
+                    $isMobile={isMobile}
                 >
                     {headerContent}
                 </MessagesHeader>

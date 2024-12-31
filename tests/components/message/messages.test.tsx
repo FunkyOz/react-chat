@@ -1,7 +1,22 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
 import { Messages } from "../../../lib/components/message/messages";
+
+// Mock matchMedia
+Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: vi.fn().mockImplementation((query) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(), // Deprecated
+        removeListener: vi.fn(), // Deprecated
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+    })),
+});
 
 vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
     MessagesWrapper: ({
@@ -34,6 +49,10 @@ vi.mock("../../../lib/provider", () => ({
 }));
 
 describe("Messages", () => {
+    afterEach(() => {
+        vi.clearAllMocks();
+    });
+
     it("should render children directly when children is not a function", () => {
         render(
             <Messages>

@@ -846,6 +846,158 @@ function UserProfile({ userId }: { userId: number }) {
             },
         ],
     },
+    {
+        conversationId: 10,
+        title: "React Security",
+        messages: [
+            {
+                messageId: 73,
+                content: "How can I secure my React application?",
+                role: "user",
+                createdAt: new Date("2024-01-24T19:00:00Z"),
+            },
+            {
+                messageId: 74,
+                content:
+                    "Security best practices:\n1. XSS prevention\n2. CSRF protection\n3. Content Security Policy\n4. Secure authentication\n5. Input validation",
+                role: "assistant",
+                createdAt: new Date("2024-01-24T19:01:00Z"),
+            },
+        ],
+    },
+    {
+        conversationId: 10,
+        title: "React Security",
+        messages: [
+            {
+                messageId: 73,
+                content: "How can I secure my React application?",
+                role: "user",
+                createdAt: new Date("2024-01-24T19:00:00Z"),
+            },
+            {
+                messageId: 74,
+                content:
+                    "Security best practices:\n1. XSS prevention\n2. CSRF protection\n3. Content Security Policy\n4. Secure authentication\n5. Input validation",
+                role: "assistant",
+                createdAt: new Date("2024-01-24T19:01:00Z"),
+            },
+        ],
+    },
+    {
+        conversationId: 10,
+        title: "React Security",
+        messages: [
+            {
+                messageId: 73,
+                content: "How can I secure my React application?",
+                role: "user",
+                createdAt: new Date("2024-01-24T19:00:00Z"),
+            },
+            {
+                messageId: 74,
+                content:
+                    "Security best practices:\n1. XSS prevention\n2. CSRF protection\n3. Content Security Policy\n4. Secure authentication\n5. Input validation",
+                role: "assistant",
+                createdAt: new Date("2024-01-24T19:01:00Z"),
+            },
+        ],
+    },
+    {
+        conversationId: 10,
+        title: "React Security",
+        messages: [
+            {
+                messageId: 73,
+                content: "How can I secure my React application?",
+                role: "user",
+                createdAt: new Date("2024-01-24T19:00:00Z"),
+            },
+            {
+                messageId: 74,
+                content:
+                    "Security best practices:\n1. XSS prevention\n2. CSRF protection\n3. Content Security Policy\n4. Secure authentication\n5. Input validation",
+                role: "assistant",
+                createdAt: new Date("2024-01-24T19:01:00Z"),
+            },
+        ],
+    },
+    {
+        conversationId: 10,
+        title: "React Security",
+        messages: [
+            {
+                messageId: 73,
+                content: "How can I secure my React application?",
+                role: "user",
+                createdAt: new Date("2024-01-24T19:00:00Z"),
+            },
+            {
+                messageId: 74,
+                content:
+                    "Security best practices:\n1. XSS prevention\n2. CSRF protection\n3. Content Security Policy\n4. Secure authentication\n5. Input validation",
+                role: "assistant",
+                createdAt: new Date("2024-01-24T19:01:00Z"),
+            },
+        ],
+    },
+    {
+        conversationId: 10,
+        title: "React Security",
+        messages: [
+            {
+                messageId: 73,
+                content: "How can I secure my React application?",
+                role: "user",
+                createdAt: new Date("2024-01-24T19:00:00Z"),
+            },
+            {
+                messageId: 74,
+                content:
+                    "Security best practices:\n1. XSS prevention\n2. CSRF protection\n3. Content Security Policy\n4. Secure authentication\n5. Input validation",
+                role: "assistant",
+                createdAt: new Date("2024-01-24T19:01:00Z"),
+            },
+        ],
+    },
+    {
+        conversationId: 10,
+        title: "React Security",
+        messages: [
+            {
+                messageId: 73,
+                content: "How can I secure my React application?",
+                role: "user",
+                createdAt: new Date("2024-01-24T19:00:00Z"),
+            },
+            {
+                messageId: 74,
+                content:
+                    "Security best practices:\n1. XSS prevention\n2. CSRF protection\n3. Content Security Policy\n4. Secure authentication\n5. Input validation",
+                role: "assistant",
+                createdAt: new Date("2024-01-24T19:01:00Z"),
+            },
+        ],
+    },
+    {
+        conversationId: 10,
+        title: "React Security",
+        messages: [
+            {
+                messageId: 73,
+                content: "How can I secure my React application?",
+                role: "user",
+                createdAt: new Date("2024-01-24T19:00:00Z"),
+            },
+            {
+                messageId: 74,
+                content:
+                    "Security best practices:\n1. XSS prevention\n2. CSRF protection\n3. Content Security Policy\n4. Secure authentication\n5. Input validation",
+                role: "assistant",
+                createdAt: new Date("2024-01-24T19:01:00Z"),
+            },
+        ],
+    },
 ];
 
 export const activeConversationIndex = 10;

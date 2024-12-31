@@ -86,22 +86,36 @@ export const LoadingCircle = styled.div`
     }
 `;
 
-export const MessagesWrapper = styled.div<{ $isWithHeader?: boolean }>`
+export const MessagesWrapper = styled.div<{ $withHeader?: boolean }>`
     display: flex;
     flex-direction: column;
     flex: 1;
     gap: 1rem;
     position: relative;
     width: 100%;
-    padding-top: ${({ $isWithHeader }) => ($isWithHeader ? "1rem" : "0")};
+    padding-top: ${({ $withHeader }) => ($withHeader ? "4rem" : "0")};
+    padding-bottom: 4rem;
 `;
 
-export const MessagesHeader = styled.div<{ $isSidebarOpen?: boolean }>`
+export const MessagesHeader = styled.div<{
+    $isSidebarOpen?: boolean;
+    $isMobile?: boolean;
+}>`
     display: flex;
     align-items: center;
-    padding: 1rem ${({ $isSidebarOpen }) => (!$isSidebarOpen ? "4rem" : "1rem")};
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: ${({ $isSidebarOpen, $isMobile }) => {
+        if (!$isSidebarOpen) {
+            return "4rem";
+        }
+        if (!$isMobile) {
+            return "18rem";
+        }
+        return "1rem";
+    }};
     min-height: 3.75rem;
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;

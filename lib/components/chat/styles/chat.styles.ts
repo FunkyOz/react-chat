@@ -24,7 +24,7 @@ export const ChatContainer = styled.div`
 `;
 
 export const ChatLayer = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     right: 0;

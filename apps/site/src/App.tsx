@@ -68,7 +68,7 @@ function App() {
     const [message, setMessage] = useState("");
 
     return (
-        <div className="h-screen w-screen flex flex-col bg-white overflow-hidden">
+        <div className="w-screen flex flex-col bg-white overflow-hidden">
             <Chat>
                 <Sidebar items={conversations}>
                     {(item: Conversation, key: number) => (

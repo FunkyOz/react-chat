@@ -1,10 +1,4 @@
-import React, {
-    ReactNode,
-    ReactElement,
-    useMemo,
-    useRef,
-    useEffect,
-} from "react";
+import React, { ReactNode, ReactElement, useMemo, useEffect } from "react";
 import { Sidebar } from "../../../components/sidebar/sidebar";
 import { MessageInput } from "../../../components/message/message-input";
 import { Messages } from "../../../components/message/messages";
@@ -14,11 +8,11 @@ type UseChatReturn = {
     messageInput: ReactNode;
     messages: ReactNode;
     others: ReactNode[];
-    scrollableRef: React.RefObject<HTMLDivElement>;
 };
 
 type UseChatProps = {
     children: ReactNode;
+    withScroll?: boolean;
 };
 
 const isSidebarElement = (child: ReactNode): child is ReactElement => {
@@ -33,8 +27,10 @@ const isMessagesElement = (child: ReactNode): child is ReactElement => {
     return React.isValidElement(child) && child.type === Messages;
 };
 
-export const useChat = ({ children }: UseChatProps): UseChatReturn => {
-    const scrollableRef = useRef<HTMLDivElement>(null);
+export const useChat = ({
+    children,
+    withScroll,
+}: UseChatProps): UseChatReturn => {
     const childrenAsArray = useMemo(() => {
         return Array.isArray(children) ? children : [children];
     }, [children]);
@@ -61,19 +57,19 @@ export const useChat = ({ children }: UseChatProps): UseChatReturn => {
     }, [childrenAsArray]);
 
     useEffect(() => {
-        if (scrollableRef.current) {
-            scrollableRef.current.scrollTo({
+        if (withScroll) {
+            window.scrollTo({
                 left: 0,
-                top: scrollableRef.current.scrollHeight,
+                top: document.body.scrollHeight,
+                behavior: "instant",
             });
         }
-    }, [scrollableRef]);
+    }, []);
 
     return {
         sidebar,
         messageInput,
         messages,
         others,
-        scrollableRef,
     };
 };

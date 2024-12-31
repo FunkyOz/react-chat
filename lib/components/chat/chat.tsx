@@ -12,14 +12,11 @@ import useClassNames from "../../hooks/useClassNames";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 import { useSidebarHandler } from "../sidebar/hooks/useSidebarHandler";
 
-export const Chat: React.FC<ChatProps> = ({
-    children,
-    className,
-    classNames,
-}) => {
+export const Chat: React.FC<ChatProps> = (props) => {
+    const { children, ...rest } = props;
     return (
         <ChatProvider>
-            <ChatHelper className={className} classNames={classNames}>
+            <ChatHelper {...rest}>
                 {children}
             </ChatHelper>
         </ChatProvider>
@@ -32,9 +29,11 @@ const ChatHelper: React.FC<ChatProps> = ({
     children,
     className,
     classNames,
+    withScroll,
 }) => {
-    const { scrollableRef, sidebar, messageInput, messages, others } = useChat({
+    const { sidebar, messageInput, messages, others } = useChat({
         children,
+        withScroll,
     });
     const classes = useClassNames({ className, classNames });
     const isMobile = useMediaQuery("(max-width: 768px)");
@@ -50,10 +49,7 @@ const ChatHelper: React.FC<ChatProps> = ({
                 {isMobile && isSidebarOpen && (
                     <ChatLayer onClick={handleClose} />
                 )}
-                <ChatContainer
-                    ref={scrollableRef}
-                    className={classes?.container}
-                >
+                <ChatContainer className={classes?.container}>
                     {messages}
                     {others}
                     {messageInput}

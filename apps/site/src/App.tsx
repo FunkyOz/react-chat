@@ -69,7 +69,7 @@ function App() {
 
     return (
         <div className="w-screen flex flex-col bg-white overflow-hidden">
-            <Chat>
+            <Chat withScroll>
                 <Sidebar items={conversations}>
                     {(item: Conversation, key: number) => (
                         <SidebarItem

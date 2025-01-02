@@ -67,9 +67,17 @@ function App() {
 
     const [message, setMessage] = useState("");
 
+    useEffect(() => {
+        window.scrollTo({
+            left: 0,
+            top: document.body.scrollHeight,
+            behavior: "instant",
+        });
+    }, []);
+
     return (
         <div className="w-screen flex flex-col bg-white overflow-hidden">
-            <Chat withScroll>
+            <Chat>
                 <Sidebar items={conversations}>
                     {(item: Conversation, key: number) => (
                         <SidebarItem

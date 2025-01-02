@@ -6,10 +6,6 @@ export type ChatProps = {
      */
     children?: ReactNode;
     /**
-     * Whether to scroll to the bottom of the chat when the component is mounted
-     */
-    withScroll?: boolean;
-    /**
      * The className of the chat component
      */
     className?: string;

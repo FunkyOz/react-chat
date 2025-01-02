@@ -1,4 +1,4 @@
-import React, { ReactNode, ReactElement, useMemo, useEffect } from "react";
+import React, { ReactNode, ReactElement, useMemo } from "react";
 import { Sidebar } from "../../../components/sidebar/sidebar";
 import { MessageInput } from "../../../components/message/message-input";
 import { Messages } from "../../../components/message/messages";
@@ -12,7 +12,6 @@ type UseChatReturn = {
 
 type UseChatProps = {
     children: ReactNode;
-    withScroll?: boolean;
 };
 
 const isSidebarElement = (child: ReactNode): child is ReactElement => {
@@ -27,10 +26,7 @@ const isMessagesElement = (child: ReactNode): child is ReactElement => {
     return React.isValidElement(child) && child.type === Messages;
 };
 
-export const useChat = ({
-    children,
-    withScroll,
-}: UseChatProps): UseChatReturn => {
+export const useChat = ({ children }: UseChatProps): UseChatReturn => {
     const childrenAsArray = useMemo(() => {
         return Array.isArray(children) ? children : [children];
     }, [children]);
@@ -55,16 +51,6 @@ export const useChat = ({
                 !isMessagesElement(child)
         );
     }, [childrenAsArray]);
-
-    useEffect(() => {
-        if (withScroll) {
-            window.scrollTo({
-                left: 0,
-                top: document.body.scrollHeight,
-                behavior: "instant",
-            });
-        }
-    }, []);
 
     return {
         sidebar,

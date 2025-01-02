@@ -27,11 +27,9 @@ const ChatHelper: React.FC<ChatProps> = ({
     children,
     className,
     classNames,
-    withScroll,
 }) => {
     const { sidebar, messageInput, messages, others } = useChat({
         children,
-        withScroll,
     });
     const classes = useClassNames({ className, classNames });
     const isMobile = useMediaQuery("(max-width: 768px)");

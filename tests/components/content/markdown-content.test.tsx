@@ -8,12 +8,15 @@ vi.mock("react-markdown", () => ({
     default: ({ children, components }: any) => {
         // Simulate code block rendering
         const codeProps = {
-            children: "console.log('test')",
-            className: "language-javascript",
+            children: (
+                <pre className="language-javascript">
+                    console.log(&apos;test&apos;)
+                </pre>
+            ),
         };
         return (
             <div>
-                {components.code(codeProps)}
+                {components.pre(codeProps)}
                 <div>{children}</div>
             </div>
         );

@@ -844,6 +844,21 @@ function UserProfile({ userId }: { userId: number }) {
                 role: "assistant",
                 createdAt: new Date("2024-01-20T10:03:00"),
             },
+            {
+                messageId: 91,
+                content:
+                    "Can you show me how to implement custom hooks with TypeScript?",
+                role: "user",
+                createdAt: new Date("2024-01-20T10:02:00"),
+            },
+            {
+                messageId: 92,
+                content: `Here's an example of custom hooks implementation with TypeScript:
+
+\`My code\` -> Test`,
+                role: "assistant",
+                createdAt: new Date("2024-01-20T10:03:00"),
+            },
         ],
     },
     {

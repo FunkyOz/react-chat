@@ -29,9 +29,14 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
         <Markdown
             className={classes.base}
             components={{
-                code({ children, className }) {
-                    const match = /language-(\w+)/.exec(className || "");
-                    const codeString = String(children).replace(/\n$/, "");
+                pre({ children }: React.ComponentProps<"pre">) {
+                    const { className, children: code } = React.isValidElement(
+                        children
+                    )
+                        ? children.props
+                        : {};
+                    const match = /language-(\w+)/.exec(className ?? "");
+                    const codeString = String(code).trim();
 
                     return (
                         <CodeContainer className={classes.codeContainer}>
@@ -50,7 +55,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
                             {match ? (
                                 <SyntaxHighlighter
                                     language={match[1] as string}
-                                    PreTag="div"
+                                    PreTag="pre"
                                     className="code-block"
                                 >
                                     {codeString}

@@ -4,6 +4,12 @@
     "type": "module",
     "main": "dist/main.js",
     "types": "dist/main.d.ts",
+    "license": "MIT",
+    "author": {
+        "name": "Lorenzo Dessimoni",
+        "email": "lorenzo.dessimoni@gmail.com",
+        "url": "https://github.com/funkyoz"
+    },
     "files": [
         "dist"
     ],

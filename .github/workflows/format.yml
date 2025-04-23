@@ -24,14 +24,19 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 10
+
     - name: Install dependencies
       run: |
-        npm install
+        pnpm install
 
     - name: Coding Style Checks
       run: |
-        npm run tests:lint
+        pnpm run tests:lint
 
     - name: Type Checks
       run: |
-        npm run tests:types
+        pnpm run tests:types

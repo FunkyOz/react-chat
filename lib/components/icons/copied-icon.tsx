@@ -1,5 +1,6 @@
 import React from "react";
-import { IconContainer } from "./styles/icon-container.styles";
+import { IconContainer } from "./components";
+
 interface CopiedIconProps {
     className?: string;
 }
@@ -7,23 +8,22 @@ interface CopiedIconProps {
 export const CopiedIcon: React.FC<CopiedIconProps> = ({ className }) => (
     <IconContainer>
         <svg
-            stroke="currentColor"
-            fill="currentColor"
-            strokeWidth="0"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-            height="16"
             width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={className}
+            data-testid="copied-icon"
         >
             <path
-                fillRule="evenodd"
-                d="M19.916 4.626a.75.75 0 0 1 .208 1.04l-9 13.5a.75.75 0 0 1-1.154.114l-6-6a.75.75 0 0 1 1.06-1.06l5.353 5.353 8.493-12.74a.75.75 0 0 1 1.04-.207Z"
-                clipRule="evenodd"
-            ></path>
+                d="M13.5 5.5L6.5 12.5L2.5 8.5"
+                stroke="#10B981"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
         </svg>
-        Copied!
     </IconContainer>
 );
 

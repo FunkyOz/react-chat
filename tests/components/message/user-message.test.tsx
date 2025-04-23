@@ -1,10 +1,10 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import React from "react";
+import { describe, expect, it, vi } from "vitest";
 import { UserMessage } from "../../../lib/components/message/user-message";
 
 // Mock the styles
-vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
+vi.mock("../../../lib/components/message/components", () => ({
     UserMessageWrapper: ({
         children,
         className,
@@ -18,12 +18,12 @@ vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
     ),
     UserMessageContent: ({
         children,
-        $color,
+        color,
     }: {
         children: React.ReactNode;
-        $color?: string;
+        color?: string;
     }) => (
-        <div data-testid="user-message-content" data-color={$color}>
+        <div data-testid="user-message-content" data-color={color}>
             {children}
         </div>
     ),

@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
 import {
+    AssistantLoading,
+    AssistantMessage,
     Chat,
+    MarkdownContent,
     MessageInput,
     Messages,
     Sidebar,
     SidebarItem,
     UserMessage,
-    AssistantMessage,
-    AssistantLoading,
-    MarkdownContent,
 } from "@funkyoz/react-chat";
+import { useEffect, useState } from "react";
 import {
     conversations,
     activeConversationIndex as defaultActiveIndex,
@@ -77,7 +77,7 @@ function App() {
 
     return (
         <div className="w-screen flex flex-col bg-white overflow-hidden">
-            <Chat>
+            <Chat sidebarSize="xl">
                 <Sidebar items={conversations}>
                     {(item: Conversation, key: number) => (
                         <SidebarItem
@@ -92,7 +92,6 @@ function App() {
                         </SidebarItem>
                     )}
                 </Sidebar>
-                <div>Test</div>
                 <Messages
                     items={activeConversation.messages}
                     isLoading={isLoading}
@@ -111,7 +110,6 @@ function App() {
                     withAutoFocus
                     onSend={handleSend}
                     onChange={setMessage}
-                    bottomContent={<div>{message}</div>}
                 />
             </Chat>
         </div>

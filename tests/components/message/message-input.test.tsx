@@ -1,10 +1,10 @@
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { MessageInput } from "../../../lib/components/message/message-input";
 
 // Mock the styles
-vi.mock("../../../lib/components/message/styles/message-input.styles", () => ({
+vi.mock("../../../lib/components/message/components", () => ({
     MessageInputContainer: ({ children }: { children: React.ReactNode }) => (
         <div data-testid="input-container">{children}</div>
     ),

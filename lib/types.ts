@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
 
+export type Size = "sm" | "md" | "lg" | "xl";
+
 export type ChatProps = {
     /**
      * The children of the chat component
@@ -14,6 +16,7 @@ export type ChatProps = {
         content?: string;
         container?: string;
     };
+    sidebarSize?: Size;
 };
 
 export type ChatContainerProps = {
@@ -178,10 +181,6 @@ export type SidebarProps<T> = {
      * The icon to use for the toggle button
      */
     toggleIcon?: ReactNode;
-    /**
-     * The size of the sidebar in pixels
-     */
-    size?: number;
     /**
      * The className of the sidebar
      */

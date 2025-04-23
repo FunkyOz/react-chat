@@ -1,5 +1,9 @@
+import { Size } from "../types";
+
 export type ChatState = {
     isSidebarOpen: boolean;
+    sidebarSize: Size;
+    hasSidebar: boolean;
 };
 
 export type ChatAction =

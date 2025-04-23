@@ -1,9 +1,7 @@
 import React from "react";
-import { MessagesWrapper, MessagesHeader } from "./styles/messages.styles";
-import { MessagesProps } from "../../types";
 import useClassNames from "../../hooks/useClassNames";
-import { useChatProvider } from "../../provider";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { MessagesProps } from "../../types";
+import { MessagesHeader, MessagesWrapper } from "./components";
 
 export function Messages<T>({
     items = [],
@@ -14,11 +12,6 @@ export function Messages<T>({
     classNames,
     headerContent,
 }: MessagesProps<T>) {
-    const {
-        state: { isSidebarOpen },
-    } = useChatProvider();
-    const isMobile = useMediaQuery("(max-width: 768px)");
-
     const renderItems = () => {
         if (typeof children === "function") {
             return items.map((item, index) =>
@@ -36,14 +29,10 @@ export function Messages<T>({
     return (
         <MessagesWrapper
             className={classes.base}
-            $withHeader={Boolean(headerContent)}
+            withHeader={Boolean(headerContent)}
         >
             {headerContent && (
-                <MessagesHeader
-                    className={classes.header}
-                    $isSidebarOpen={isSidebarOpen}
-                    $isMobile={isMobile}
-                >
+                <MessagesHeader className={classes.header}>
                     {headerContent}
                 </MessagesHeader>
             )}

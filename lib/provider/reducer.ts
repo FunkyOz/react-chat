@@ -1,7 +1,9 @@
-import { ChatState, ChatAction } from "./types";
+import { ChatAction, ChatState } from "./types";
 
 export const initialState: ChatState = {
     isSidebarOpen: true,
+    sidebarSize: "md",
+    hasSidebar: true,
 };
 
 export const chatReducer = (

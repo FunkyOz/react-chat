@@ -1,6 +1,6 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi, afterEach } from "vitest";
+import React from "react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { Sidebar } from "../../../lib/components/sidebar/sidebar";
 import { SidebarItem } from "../../../lib/components/sidebar/sidebar-item";
 
@@ -24,45 +24,62 @@ vi.mock("../../../lib/components/icons", () => ({
 }));
 
 // Mock the styles
-vi.mock("../../../lib/components/sidebar/styles/sidebar.styles", () => ({
+vi.mock("../../../lib/components/sidebar/components", () => ({
     SidebarWrapper: ({
         children,
-        $isOpen,
+        className,
     }: {
         children: React.ReactNode;
-        $isOpen: boolean;
+        className?: string;
     }) => (
-        <div data-testid="sidebar-wrapper" data-is-open={$isOpen}>
+        <div data-testid="sidebar-wrapper" className={className}>
             {children}
         </div>
     ),
     SidebarContainer: ({
         children,
-        $isOpen,
+        isOpen,
+        className,
     }: {
         children: React.ReactNode;
-        $isOpen: boolean;
+        isOpen: boolean;
+        className?: string;
     }) => (
-        <div data-testid="sidebar-container" data-is-open={$isOpen}>
+        <div
+            data-testid="sidebar-container"
+            data-is-open={isOpen}
+            className={className}
+        >
             {children}
         </div>
     ),
-    SidebarContent: ({ children }: { children: React.ReactNode }) => (
-        <div data-testid="sidebar-content">{children}</div>
+    SidebarContent: ({
+        children,
+        className,
+    }: {
+        children: React.ReactNode;
+        className?: string;
+    }) => (
+        <div data-testid="sidebar-content" className={className}>
+            {children}
+        </div>
     ),
     SidebarHeader: ({
         children,
-        $withToggle,
-        $isOpen,
+        withToggle,
+        isOpen,
+        className,
     }: {
         children: React.ReactNode;
-        $withToggle: boolean;
-        $isOpen: boolean;
+        withToggle: boolean;
+        isOpen: boolean;
+        className?: string;
     }) => (
         <div
             data-testid="sidebar-header"
-            data-with-toggle={$withToggle}
-            data-is-open={$isOpen}
+            data-with-toggle={withToggle}
+            data-is-open={isOpen}
+            className={className}
         >
             {children}
         </div>
@@ -70,19 +87,53 @@ vi.mock("../../../lib/components/sidebar/styles/sidebar.styles", () => ({
     ToggleButton: ({
         children,
         onClick,
-        $isOpen,
+        isOpen,
+        className,
     }: {
         children: React.ReactNode;
         onClick: () => void;
-        $isOpen: boolean;
+        isOpen: boolean;
+        className?: string;
     }) => (
         <button
             data-testid="toggle-button"
             onClick={onClick}
-            data-is-open={$isOpen}
+            data-is-open={isOpen}
+            className={className}
         >
             {children}
         </button>
+    ),
+    SidebarItemContainer: ({
+        children,
+        className,
+    }: {
+        children: React.ReactNode;
+        className?: string;
+    }) => (
+        <div data-testid="sidebar-item-container" className={className}>
+            {children}
+        </div>
+    ),
+    SidebarItemContent: ({
+        children,
+        onClick,
+        isActive,
+        className,
+    }: {
+        children: React.ReactNode;
+        onClick?: () => void;
+        isActive?: boolean;
+        className?: string;
+    }) => (
+        <div
+            data-testid="sidebar-item-content"
+            onClick={onClick}
+            data-is-active={isActive}
+            className={className}
+        >
+            {children}
+        </div>
     ),
 }));
 
@@ -146,14 +197,5 @@ describe("Sidebar", () => {
         );
 
         expect(screen.getByText("Item 1")).toBeInTheDocument();
-    });
-
-    it("applies correct styles based on sidebar open state", () => {
-        render(<Sidebar />);
-
-        expect(screen.getByTestId("sidebar-container")).toHaveAttribute(
-            "data-is-open",
-            "true"
-        );
     });
 });

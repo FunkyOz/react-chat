@@ -1,16 +1,13 @@
-import { ReactNode, isValidElement, useMemo } from "react";
+import { ReactNode, isValidElement } from "react";
 import { SidebarItem } from "../sidebar-item";
-import { mRound } from "../../../utils";
 
 type UseSidebarReturn = {
     renderItems: () => ReactNode;
-    size: number;
 };
 
 type UseSidebarProps<T> = {
     items?: T[];
     children?: ReactNode | ((item: T, key: number) => ReactNode);
-    size?: number;
 };
 
 // Helper function to check if a React element is a SidebarItem
@@ -21,13 +18,7 @@ const isSidebarItemElement = (element: ReactNode): boolean => {
 export const useSidebar = <T>({
     items = [],
     children,
-    size,
 }: UseSidebarProps<T>): UseSidebarReturn => {
-    const remSize = useMemo(
-        () => (size ? mRound(size / 16, 0.25) : 16),
-        [size]
-    );
-
     const renderItems = (): ReactNode => {
         if (typeof children === "function") {
             return items.map((item, key) => {
@@ -51,7 +42,6 @@ export const useSidebar = <T>({
     };
 
     return {
-        size: remSize,
         renderItems,
     };
 };

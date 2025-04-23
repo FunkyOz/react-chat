@@ -1,12 +1,12 @@
 import React from "react";
+import useClassNames from "../../hooks/useClassNames";
 import { AssistantMessageProps } from "../../types";
+import { AssistantIcon } from "../icons";
 import {
     AssistantMessageContent,
     AssistantMessageWrapper,
     IconWrapper,
-} from "./styles/messages.styles";
-import { AssistantIcon } from "../icons";
-import useClassNames from "../../hooks/useClassNames";
+} from "./components";
 
 export const AssistantMessage: React.FC<AssistantMessageProps> = ({
     children,

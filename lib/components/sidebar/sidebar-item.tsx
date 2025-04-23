@@ -1,10 +1,7 @@
 import React from "react";
-import {
-    SidebarItemContainer,
-    SidebarItemContent,
-} from "./styles/sidebar-item.styles";
-import { SidebarItemProps } from "../../types";
 import useClassNames from "../../hooks/useClassNames";
+import { SidebarItemProps } from "../../types";
+import { SidebarItemContainer, SidebarItemContent } from "./components";
 
 export const SidebarItem: React.FC<SidebarItemProps> = ({
     children,
@@ -20,7 +17,7 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
             <SidebarItemContent
                 className={classes.content}
                 onClick={onClick}
-                $isActive={isActive}
+                isActive={isActive}
             >
                 {children}
             </SidebarItemContent>

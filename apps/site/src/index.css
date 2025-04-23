@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../index.html";
+@source "../src/**/*.{js,ts,jsx,tsx}";
+@source "../node_modules/@funkyoz/react-chat/dist/**/*.{js,ts,jsx,tsx}";
 
 .assistant-message > div:nth-child(2) {
     @apply bg-gray-100 p-4 rounded-xl;

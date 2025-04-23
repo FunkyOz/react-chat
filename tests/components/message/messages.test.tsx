@@ -1,6 +1,6 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi, afterEach } from "vitest";
+import React from "react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { Messages } from "../../../lib/components/message/messages";
 
 // Mock matchMedia
@@ -18,7 +18,7 @@ Object.defineProperty(window, "matchMedia", {
     })),
 });
 
-vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
+vi.mock("../../../lib/components/message/components", () => ({
     MessagesWrapper: ({
         children,
         className,

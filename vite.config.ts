@@ -1,6 +1,6 @@
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
+import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
 // https://vite.dev/config/
@@ -15,7 +15,7 @@ export default defineConfig({
     ],
     build: {
         copyPublicDir: false,
-        minify: "esbuild",
+        minify: false,
         lib: {
             entry: resolve(__dirname, "lib/main.ts"),
             formats: ["es"],
@@ -28,9 +28,6 @@ export default defineConfig({
                 "react-markdown",
                 "react-syntax-highlighter",
             ],
-            output: {
-                assetFileNames: "asset/[name][extname]",
-            },
         },
     },
 });

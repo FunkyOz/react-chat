@@ -1,10 +1,10 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import React from "react";
+import { describe, expect, it, vi } from "vitest";
 import { AssistantMessage } from "../../../lib/components/message/assistant-message";
 
 // Mock the styles
-vi.mock("../../../lib/components/message/styles/messages.styles", () => ({
+vi.mock("../../../lib/components/message/components", () => ({
     AssistantMessageWrapper: ({
         children,
         className,

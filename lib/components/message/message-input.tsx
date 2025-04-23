@@ -1,15 +1,15 @@
 import React from "react";
+import useClassNames from "../../hooks/useClassNames";
+import { MessageInputProps } from "../../types";
+import { SendIcon } from "../icons";
 import {
-    TextareaContainer,
+    MessageInputContainer,
     MessageInputWrapper,
     SendButton,
     Textarea,
-    MessageInputContainer,
-} from "./styles/message-input.styles";
+    TextareaContainer,
+} from "./components";
 import { useMessageInput } from "./hooks/useMessageInput";
-import { SendIcon } from "../icons";
-import { MessageInputProps } from "../../types";
-import useClassNames from "../../hooks/useClassNames";
 
 export const MessageInput: React.FC<MessageInputProps> = ({
     placeholder = "Type a message...",

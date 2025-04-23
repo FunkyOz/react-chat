@@ -1,11 +1,11 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi, afterEach } from "vitest";
 import "@testing-library/jest-dom";
+import { render, screen } from "@testing-library/react";
+import React from "react";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { Chat } from "../../../lib/components/chat/chat";
-import { Sidebar } from "../../../lib/components/sidebar/sidebar";
 import { MessageInput } from "../../../lib/components/message/message-input";
 import { Messages } from "../../../lib/components/message/messages";
+import { Sidebar } from "../../../lib/components/sidebar/sidebar";
 
 Element.prototype.scrollTo = vi.fn();
 
@@ -43,7 +43,7 @@ vi.mock("../../../lib/components/message/messages", () => ({
     }) => <div data-testid={testId || "messages"}>{children}</div>,
 }));
 
-vi.mock("../../../lib/components/chat/styles/chat.styles", () => ({
+vi.mock("../../../lib/components/chat/components", () => ({
     ChatWrapper: ({ children, ...rest }: { children: React.ReactNode }) => (
         <div data-testid="chat-wrapper" {...rest}>
             {children}

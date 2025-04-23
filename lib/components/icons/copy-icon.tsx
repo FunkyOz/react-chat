@@ -1,5 +1,5 @@
 import React from "react";
-import { IconContainer } from "./styles/icon-container.styles";
+import { IconContainer } from "./components";
 
 interface CopyIconProps {
     className?: string;

@@ -1,26 +1,26 @@
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { SidebarItem } from "../../../lib/components/sidebar/sidebar-item";
 
 // Mock the styles
-vi.mock("../../../lib/components/sidebar/styles/sidebar-item.styles", () => ({
+vi.mock("../../../lib/components/sidebar/components", () => ({
     SidebarItemContainer: ({ children }: { children: React.ReactNode }) => (
         <div data-testid="item-container">{children}</div>
     ),
     SidebarItemContent: ({
         children,
         onClick,
-        $isActive,
+        isActive,
     }: {
         children: React.ReactNode;
         onClick?: () => void;
-        $isActive?: boolean;
+        isActive?: boolean;
     }) => (
         <div
             data-testid="item-content"
             onClick={onClick}
-            data-active={$isActive}
+            data-active={isActive}
         >
             {children}
         </div>

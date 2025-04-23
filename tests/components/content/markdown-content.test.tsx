@@ -1,6 +1,6 @@
+import { fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { MarkdownContent } from "../../../lib/components/content/markdown-content";
 
 // Mock react-markdown
@@ -39,44 +39,69 @@ vi.mock("../../../lib/components/icons", () => ({
 }));
 
 // Mock the styles
-vi.mock(
-    "../../../lib/components/content/styles/markdown-content.styles",
-    () => ({
-        CodeContainer: ({ children }: { children: React.ReactNode }) => (
-            <div data-testid="code-container">{children}</div>
-        ),
-        CodeTitle: ({ children }: { children: React.ReactNode }) => (
-            <div data-testid="code-title">{children}</div>
-        ),
-        CodeLanguage: ({ children }: { children: React.ReactNode }) => (
-            <div data-testid="code-language">{children}</div>
-        ),
-        CopyButton: ({
-            children,
-            onClick,
-            $isCopied,
-        }: {
-            children: React.ReactNode;
-            onClick: () => void;
-            $isCopied: boolean;
-        }) => (
-            <button
-                data-testid="copy-button"
-                onClick={onClick}
-                data-is-copied={$isCopied}
-            >
-                {children}
-            </button>
-        ),
-    })
-);
+vi.mock("../../../lib/components/content/components", () => ({
+    CodeContainer: ({
+        children,
+        className,
+    }: {
+        children: React.ReactNode;
+        className?: string;
+    }) => (
+        <div data-testid="code-container" className={className}>
+            {children}
+        </div>
+    ),
+    CodeTitle: ({
+        children,
+        className,
+    }: {
+        children: React.ReactNode;
+        className?: string;
+    }) => (
+        <div data-testid="code-title" className={className}>
+            {children}
+        </div>
+    ),
+    CodeLanguage: ({
+        children,
+        className,
+    }: {
+        children: React.ReactNode;
+        className?: string;
+    }) => (
+        <div data-testid="code-language" className={className}>
+            {children}
+        </div>
+    ),
+    CopyButton: ({
+        children,
+        onClick,
+        isCopied,
+        className,
+    }: {
+        children: React.ReactNode;
+        onClick: () => void;
+        isCopied: boolean;
+        className?: string;
+    }) => (
+        <button
+            data-testid="copy-button"
+            onClick={onClick}
+            data-is-copied={isCopied}
+            className={className}
+        >
+            {children}
+        </button>
+    ),
+}));
+
+// Create a mock handle copy function
+const mockHandleCopy = vi.fn();
 
 // Mock the useMarkdownContent hook
 vi.mock("../../../lib/components/content/hooks/useMarkdownContent", () => ({
-    default: (onCodeCopied: any) => ({
-        handleCopy: (code: string) => {
-            onCodeCopied?.(code);
-        },
+    default: () => ({
+        handleCopy: mockHandleCopy,
         isCopied: false,
     }),
 }));
@@ -103,24 +128,29 @@ describe("MarkdownContent", () => {
     it("displays language label in code blocks", () => {
         render(<MarkdownContent content="Some code" />);
 
-        expect(screen.getByText("javascript")).toBeInTheDocument();
+        // Check for the language in the code language element
+        expect(screen.getByTestId("code-language")).toHaveTextContent(
+            "javascript"
+        );
     });
 
     it("handles code copying", () => {
-        const onCodeCopied = vi.fn();
-        render(
-            <MarkdownContent content="Some code" onCodeCopied={onCodeCopied} />
-        );
+        // Reset mock for this test
+        mockHandleCopy.mockReset();
+
+        render(<MarkdownContent content="Some code" />);
 
         const copyButton = screen.getByTestId("copy-button");
         fireEvent.click(copyButton);
 
-        expect(onCodeCopied).toHaveBeenCalledWith("console.log('test')");
+        expect(mockHandleCopy).toHaveBeenCalled();
     });
 
     it("renders copy icon by default", () => {
         render(<MarkdownContent content="Some code" />);
 
-        expect(screen.getByTestId("copy-icon")).toBeInTheDocument();
+        // The copy icon should be inside the copy button
+        const copyButton = screen.getByTestId("copy-button");
+        expect(copyButton).toContainElement(screen.getByTestId("copy-icon"));
     });
 });

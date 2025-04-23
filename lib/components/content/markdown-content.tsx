@@ -1,16 +1,16 @@
 import React from "react";
-import { MarkdownContentProps } from "../../types";
 import Markdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter";
+import useClassNames from "../../hooks/useClassNames";
+import { MarkdownContentProps } from "../../types";
+import { CopiedIcon, CopyIcon } from "../icons";
 import {
     CodeContainer,
-    CopyButton,
     CodeLanguage,
     CodeTitle,
-} from "./styles/markdown-content.styles";
-import { CopyIcon, CopiedIcon } from "../icons";
+    CopyButton,
+} from "./components";
 import useMarkdownContent from "./hooks/useMarkdownContent";
-import useClassNames from "../../hooks/useClassNames";
 
 /**
  * A component that renders markdown content with proper styling
@@ -45,7 +45,7 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
                                     {match ? match[1] : "plain"}
                                 </CodeLanguage>
                                 <CopyButton
-                                    $isCopied={isCopied}
+                                    isCopied={isCopied}
                                     onClick={() => handleCopy(codeString)}
                                     className={classes.copyButton}
                                 >
@@ -72,3 +72,5 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
         </Markdown>
     );
 };
+
+MarkdownContent.displayName = "MarkdownContent";

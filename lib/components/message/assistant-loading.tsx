@@ -1,13 +1,13 @@
 import React from "react";
-import {
-    AssistantMessageWrapper,
-    AssistantMessageContent,
-    LoadingCircle,
-    IconWrapper,
-} from "./styles/messages.styles";
+import useClassNames from "../../hooks/useClassNames";
 import { AssistantLoadingProps } from "../../types";
 import { AssistantIcon } from "../icons";
-import useClassNames from "../../hooks/useClassNames";
+import {
+    AssistantMessageContent,
+    AssistantMessageWrapper,
+    IconWrapper,
+    LoadingCircle,
+} from "./components";
 
 export const AssistantLoading: React.FC<AssistantLoadingProps> = ({
     className,

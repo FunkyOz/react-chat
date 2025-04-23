@@ -24,5 +24,7 @@ dist-ssr
 *.sw?
 .cursorrules
 package-lock.json
+pnpm-lock.yaml
+pnpm-workspace.yaml
 
 coverage

@@ -1,11 +1,11 @@
 import React from "react";
+import useClassNames from "../../hooks/useClassNames";
+import type { UserMessageProps } from "../../types";
 import {
     IconWrapper,
     UserMessageContent,
     UserMessageWrapper,
-} from "./styles/messages.styles";
-import type { UserMessageProps } from "../../types";
-import useClassNames from "../../hooks/useClassNames";
+} from "./components";
 
 export const UserMessage: React.FC<UserMessageProps> = ({
     children,
@@ -20,7 +20,7 @@ export const UserMessage: React.FC<UserMessageProps> = ({
     return (
         <UserMessageWrapper className={classes.base}>
             {icon && <IconWrapper className={classes.icon}>{icon}</IconWrapper>}
-            <UserMessageContent className={classes.content} $color={color}>
+            <UserMessageContent className={classes.content} color={color}>
                 {children}
                 {endContent}
             </UserMessageContent>

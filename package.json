@@ -7,6 +7,9 @@
     "files": [
         "dist"
     ],
+    "workspaces": [
+        "apps/*"
+    ],
     "scripts": {
         "dev": "vite",
         "prebuild": "tsc -b ./tsconfig.lib.json",
@@ -15,8 +18,8 @@
         "build:watch": "vite build --watch",
         "preview": "vite preview",
         "prepublishOnly": "npm run build",
-        "lint": "prettier -w ./**/*.{ts,tsx,js,jsx}",
-        "tests:lint": "prettier -c ./**/*.{ts,tsx,js,jsx}",
+        "lint": "prettier -w ./**/*.{ts,tsx,js}",
+        "tests:lint": "prettier -c ./**/*.{ts,tsx,js}",
         "tests:types": "eslint . && tsc -b ./tsconfig.lib.json",
         "tests:unit": "vitest",
         "tests": "npm run tests:lint && npm run tests:types && npm run tests:unit",
@@ -26,7 +29,7 @@
         "react": "^18.3.1",
         "react-markdown": "^9.0.1",
         "react-syntax-highlighter": "^15.6.1",
-        "styled-components": "^6.1.13"
+        "tailwindcss": "^3.0.0 || ^4.0.0"
     },
     "devDependencies": {
         "@eslint/js": "^9.16.0",
@@ -50,7 +53,7 @@
         "react-dom": "^18.3.1",
         "react-markdown": "^9.0.1",
         "react-syntax-highlighter": "^15.6.1",
-        "styled-components": "^6.1.13",
+        "tailwindcss": "^4.0.0",
         "typescript": "~5.6.2",
         "typescript-eslint": "^8.16.0",
         "vite": "^6.0.1",

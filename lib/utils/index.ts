@@ -1,6 +1,5 @@
 import { Size } from "../types";
 
-
 /**
  * Returns the width of the sidebar based on the given size.
  * @param size The size of the sidebar.

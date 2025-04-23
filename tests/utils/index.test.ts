@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { Size } from "../../lib/types";
-import { getMessagesPaddingLeftClass, getSidebarWidthClass } from "../../lib/utils";
-
+import {
+    getMessagesPaddingLeftClass,
+    getSidebarWidthClass,
+} from "../../lib/utils";
 
 describe("getSidebarWidth", () => {
     it.each([
@@ -21,8 +23,11 @@ describe("getMessagesPaddingLeftClass", () => {
         ["md", "pl-68"],
         ["lg", "pl-76"],
         ["xl", "pl-84"],
-    ])("should return the correct padding-left for size %s", (size, expected) => {
-        const paddingLeft = getMessagesPaddingLeftClass(size as Size);
-        expect(paddingLeft).toBe(expected);
-    });
+    ])(
+        "should return the correct padding-left for size %s",
+        (size, expected) => {
+            const paddingLeft = getMessagesPaddingLeftClass(size as Size);
+            expect(paddingLeft).toBe(expected);
+        }
+    );
 });

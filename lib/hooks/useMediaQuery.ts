@@ -8,6 +8,10 @@ export function useMediaQuery(
         undefined !== serverFallback ? serverFallback : false;
 
     const [getSnapshot, subscribe] = React.useMemo(() => {
+        if (typeof window === "undefined") {
+            return [getServerSnapshot, () => () => {}];
+        }
+
         const mediaQueryList = window.matchMedia(query);
 
         return [
